@@ -14,7 +14,7 @@ import styles from "./Modal.module.css";
 import { classNames } from "helpers/classNames";
 import { useAppRootContext } from "hooks/useAppRootContext";
 
-import { Drawer } from "@xelene/vaul-with-scroll-fix";
+import { Drawer } from "vaul";
 
 import { VisuallyHidden } from "components/Service/VisuallyHidden/VisuallyHidden";
 import { ModalClose } from "./components/ModalClose/ModalClose";
@@ -49,6 +49,8 @@ export interface ModalProps
   fadeFromIndex?: never;
   /** Determines if the modal can be closed by user interactions */
   dismissible?: boolean;
+  /** Prevents the modal from preventing scroll when opened */
+  disablePreventScroll?: boolean;
 }
 
 type ModalWithComponents = ForwardRefExoticComponent<
@@ -108,6 +110,7 @@ export const Modal = forwardRef<HTMLDivElement, ModalProps>(
         modal={modal}
         preventScrollRestoration={preventScrollRestoration}
         dismissible={dismissible}
+        disablePreventScroll
       >
         {trigger && <Drawer.Trigger asChild>{trigger}</Drawer.Trigger>}
         <Drawer.Portal container={portal}>
