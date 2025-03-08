@@ -226,7 +226,7 @@ export const MultiselectBase = forwardRef<HTMLDivElement, MultiselectBaseProps>(
           type="text"
           className={styles.input}
           disabled={disabled}
-          readOnly
+          readOnly={readOnly}
           placeholder={withPlaceholder ? placeholder : undefined}
         />
       </div>
