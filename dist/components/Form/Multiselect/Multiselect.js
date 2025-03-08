@@ -3,7 +3,7 @@ import { _ as _object_spread } from "@swc/helpers/_/_object_spread";
 import { _ as _object_spread_props } from "@swc/helpers/_/_object_spread_props";
 import { _ as _object_without_properties } from "@swc/helpers/_/_object_without_properties";
 import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
-import { forwardRef, useCallback, useEffect, useId, useRef } from "react";
+import { forwardRef, useCallback, useEffect, useId, useRef, useState } from "react";
 import { Keys } from "../../../helpers/accessibility";
 import { classNames } from "../../../helpers/classNames";
 import { callMultiple } from "../../../helpers/function";
@@ -70,13 +70,40 @@ import { useMultiselect } from "./hooks/useMultiselect";
     });
     const containerRef = useRef(null);
     const rootRef = useRef(null);
+    const chevronRef = useRef(null);
+    const wasChevronClickedRef = useRef(false);
     const dropdownAriaId = useId();
     const dropdownScrollBoxRef = useRef(null);
+    // State to control whether focus should open the dropdown
+    const [shouldOpenOnFocus, setShouldOpenOnFocus] = useState(true);
+    // Track if we're in the process of toggling via the chevron
+    const isTogglingRef = useRef(false);
     const handleFocus = ()=>{
-        setOpened(true);
-        setFocusedOptionIndex(null);
+        console.log("handleFocus - shouldOpenOnFocus:", shouldOpenOnFocus, "opened:", opened, "isToggling:", isTogglingRef.current);
+        // If we're in the process of toggling via the chevron, don't change the dropdown state
+        if (isTogglingRef.current) {
+            console.log("  -> Ignoring focus during chevron toggle");
+            return;
+        }
+        // Only open the dropdown if we should open on focus
+        if (shouldOpenOnFocus) {
+            console.log("  -> Opening dropdown from focus");
+            setOpened(true);
+            setFocusedOptionIndex(null);
+        } else {
+            console.log("  -> Not opening dropdown due to shouldOpenOnFocus flag");
+        }
+        // Reset the flag for next focus
+        setShouldOpenOnFocus(true);
+        console.log("  -> Reset shouldOpenOnFocus to true");
     };
     const handleBlur = (event)=>{
+        console.log("handleBlur - relatedTarget:", event.relatedTarget);
+        // If we're in the process of toggling via the chevron, don't do anything
+        if (isTogglingRef.current) {
+            console.log("  -> Ignoring blur during chevron toggle");
+            return;
+        }
         if (!event.defaultPrevented && !creatable) {
             event.preventDefault();
         }
@@ -188,17 +215,56 @@ import { useMultiselect } from "./hooks/useMultiselect";
     }, [
         setFocusedOptionIndex
     ]);
-    const toggleOpened = ()=>{
-        setOpened((prevOpened)=>!prevOpened);
+    // Handle chevron mousedown to prevent focus issues
+    // Using mousedown instead of click ensures this runs before blur/focus events
+    const handleChevronMouseDown = (e)=>{
+        // Prevent the default behavior which would cause focus/blur events
+        e.preventDefault();
+        // Stop propagation to prevent other handlers from firing
+        e.stopPropagation();
+        console.log("handleChevronMouseDown - opened:", opened, "shouldOpenOnFocus:", shouldOpenOnFocus);
+        // Set the toggling flag to prevent focus/blur handlers from interfering
+        isTogglingRef.current = true;
+        // Set the chevron clicked flag to prevent handleClickOutside from closing the dropdown
+        wasChevronClickedRef.current = true;
+        // Toggle the dropdown state
+        if (opened) {
+            console.log("  -> Closing dropdown from chevron");
+            setShouldOpenOnFocus(false);
+            setOpened(false);
+        } else {
+            console.log("  -> Opening dropdown from chevron");
+            setOpened(true);
+        }
+        // Focus the input and reset the toggling flag after a delay
+        setTimeout(()=>{
+            if (!opened) {
+                var _inputRef_current;
+                console.log("  -> Focusing input after delay");
+                (_inputRef_current = inputRef.current) === null || _inputRef_current === void 0 ? void 0 : _inputRef_current.focus();
+            }
+            // Reset the toggling flag
+            console.log("  -> Resetting isToggling flag");
+            isTogglingRef.current = false;
+            // Reset the chevron clicked flag after a delay
+            setTimeout(()=>{
+                wasChevronClickedRef.current = false;
+            }, 100);
+        }, 100);
     };
     const handleClickOutside = useCallback(()=>{
+        console.log("handleClickOutside - wasChevronClicked:", wasChevronClickedRef.current);
+        // Don't close the dropdown if the chevron was clicked
+        if (wasChevronClickedRef.current) {
+            console.log("  -> Ignoring click outside due to chevron click");
+            return;
+        }
+        // Don't reopen on next focus
+        setShouldOpenOnFocus(false);
         setOpened(false);
     }, [
         setOpened
     ]);
-    const setOptionNode = (index, node)=>{
-        optionsNodes[index] = node;
-    };
     useGlobalClicks(handleClickOutside, opened ? rootRef : null, opened ? dropdownScrollBoxRef : null);
     const controlledStatus = status || (opened ? "focused" : "default");
     return /*#__PURE__*/ _jsxs(FormInput, {
@@ -232,8 +298,9 @@ import { useMultiselect } from "./hooks/useMultiselect";
                 "aria-haspopup": "listbox"
             })),
             /*#__PURE__*/ _jsx(Icon20ChevronDown, {
+                ref: chevronRef,
                 "aria-hidden": true,
-                onClick: toggleOpened,
+                onMouseDown: handleChevronMouseDown,
                 className: "tgui-e9b05eb8feaa0359"
             }),
             opened && /*#__PURE__*/ _jsx(MultiselectDropdown, {
@@ -247,7 +314,9 @@ import { useMultiselect } from "./hooks/useMultiselect";
                 renderOption: renderOption,
                 focusedOption: focusedOption,
                 value: value,
-                setOptionNode: setOptionNode,
+                setOptionNode: (index, node)=>{
+                    optionsNodes[index] = node;
+                },
                 setOpened: setOpened,
                 closeDropdownAfterSelect: closeDropdownAfterSelect,
                 addOption: addOption,

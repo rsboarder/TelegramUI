@@ -147,7 +147,7 @@ import { renderChipDefault } from "./constants";
                 type: "text",
                 className: "tgui-41e02fd2529dfbd2",
                 disabled: disabled,
-                readOnly: true,
+                readOnly: readOnly,
                 placeholder: withPlaceholder ? placeholder : undefined
             }))
         ]

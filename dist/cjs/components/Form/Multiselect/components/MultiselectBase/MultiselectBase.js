@@ -155,7 +155,7 @@ const MultiselectBase = /*#__PURE__*/ (0, _react.forwardRef)((_param, ref)=>{
                 type: "text",
                 className: "tgui-41e02fd2529dfbd2",
                 disabled: disabled,
-                readOnly: true,
+                readOnly: readOnly,
                 placeholder: withPlaceholder ? placeholder : undefined
             }))
         ]

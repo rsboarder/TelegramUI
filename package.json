@@ -29,7 +29,8 @@
     "tsc:cjs": "cross-env NODE_ENV=production tsc --emitDeclarationOnly --declaration --outDir dist/cjs/ -p tsconfig.dist.json && tsc-alias",
     "dev": "storybook dev -p 6006 --docs",
     "storybook:build": "storybook build --docs",
-    "storybook:publish": "rsync ./storybook-static/ xelene:/var/www/tgui.xelene.me -avz --exclude .git/ --exclude node_modules/"
+    "storybook:publish": "rsync ./storybook-static/ xelene:/var/www/tgui.xelene.me -avz --exclude .git/ --exclude node_modules/",
+    "watch": "concurrently \"npm run swc:es6 -- --watch\" \"npm run swc:cjs -- --watch\" \"npm run postcss -- --watch\""
   },
   "repository": {
     "type": "git",
