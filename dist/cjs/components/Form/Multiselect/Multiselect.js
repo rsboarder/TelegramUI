@@ -1,4 +1,4 @@
-'use client';
+"use client";
 "use strict";
 Object.defineProperty(exports, "__esModule", {
     value: true
@@ -258,7 +258,7 @@ const Multiselect = /*#__PURE__*/ (0, _react.forwardRef)((_param, ref)=>{
         setOpened
     ]);
     (0, _useGlobalClicks.useGlobalClicks)(handleClickOutside, opened ? rootRef : null, opened ? dropdownScrollBoxRef : null);
-    const controlledStatus = status || (opened ? 'focused' : 'default');
+    const controlledStatus = status || (opened ? "focused" : "default");
     return /*#__PURE__*/ (0, _jsxruntime.jsxs)(_FormInput.FormInput, {
         ref: (0, _refs.multipleRef)(ref, containerRef),
         header: header,

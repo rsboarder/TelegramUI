@@ -9,7 +9,7 @@
 }
 
 .wrapper--ios {
-  padding: 16px 16px 8px 16px;
+  padding: 16px 16px 8px 0;
   color: var(--tgui--section_header_text_color);
 }
 

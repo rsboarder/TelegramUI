@@ -1,4 +1,4 @@
-'use client';
+"use client";
 import { _ as _object_spread } from "@swc/helpers/_/_object_spread";
 import { _ as _object_spread_props } from "@swc/helpers/_/_object_spread_props";
 import { _ as _object_without_properties } from "@swc/helpers/_/_object_without_properties";
@@ -251,7 +251,7 @@ import { useMultiselect } from "./hooks/useMultiselect";
         setOpened
     ]);
     useGlobalClicks(handleClickOutside, opened ? rootRef : null, opened ? dropdownScrollBoxRef : null);
-    const controlledStatus = status || (opened ? 'focused' : 'default');
+    const controlledStatus = status || (opened ? "focused" : "default");
     return /*#__PURE__*/ _jsxs(FormInput, {
         ref: multipleRef(ref, containerRef),
         header: header,

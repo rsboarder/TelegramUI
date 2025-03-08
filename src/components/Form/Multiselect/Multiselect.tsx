@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import {
   FocusEvent,
@@ -11,58 +11,58 @@ import {
   useId,
   useRef,
   useState,
-} from 'react';
-import styles from './Multiselect.module.css';
+} from "react";
+import styles from "./Multiselect.module.css";
 
-import { Keys } from 'helpers/accessibility';
-import { classNames } from 'helpers/classNames';
-import { callMultiple } from 'helpers/function';
-import { multipleRef } from 'helpers/react/refs';
-import { useGlobalClicks } from 'hooks/useGlobalClicks';
+import { Keys } from "helpers/accessibility";
+import { classNames } from "helpers/classNames";
+import { callMultiple } from "helpers/function";
+import { multipleRef } from "helpers/react/refs";
+import { useGlobalClicks } from "hooks/useGlobalClicks";
 
-import { Icon20ChevronDown } from 'icons/20/chevron_down';
+import { Icon20ChevronDown } from "icons/20/chevron_down";
 
 import {
   FormInput,
   FormPublicProps,
-} from 'components/Form/FormInput/FormInput';
+} from "components/Form/FormInput/FormInput";
 import {
   MultiselectBase,
   MultiselectBaseProps,
-} from './components/MultiselectBase/MultiselectBase';
+} from "./components/MultiselectBase/MultiselectBase";
 import {
   MultiselectDropdown,
   MultiselectDropdownProps,
-} from './components/MultiselectDropdown/MultiselectDropdown';
+} from "./components/MultiselectDropdown/MultiselectDropdown";
 import {
   FOCUS_ACTION_NEXT,
   FOCUS_ACTION_PREV,
   FocusActionType,
   isServicePreset,
-} from './hooks/constants';
-import { useMultiselect, UseMultiselectProps } from './hooks/useMultiselect';
-import { MultiselectOption } from './types';
+} from "./hooks/constants";
+import { useMultiselect, UseMultiselectProps } from "./hooks/useMultiselect";
+import { MultiselectOption } from "./types";
 
 export interface MultiselectProps
   extends Omit<
-  InputHTMLAttributes<HTMLInputElement>,
-  'value' | 'defaultValue' | 'onChange'
-  >,
-  Omit<FormPublicProps, 'after'>,
-  Pick<MultiselectDropdownProps, 'closeDropdownAfterSelect' | 'renderOption'>,
-  Pick<
-  UseMultiselectProps,
-  | 'value'
-  | 'defaultValue'
-  | 'onChange'
-  | 'filterFn'
-  | 'onInputChange'
-  | 'inputValue'
-  | 'selectedBehavior'
-  | 'emptyText'
-  | 'creatable'
-  >,
-  Pick<MultiselectBaseProps, 'renderChip'> {
+      InputHTMLAttributes<HTMLInputElement>,
+      "value" | "defaultValue" | "onChange"
+    >,
+    Omit<FormPublicProps, "after">,
+    Pick<MultiselectDropdownProps, "closeDropdownAfterSelect" | "renderOption">,
+    Pick<
+      UseMultiselectProps,
+      | "value"
+      | "defaultValue"
+      | "onChange"
+      | "filterFn"
+      | "onInputChange"
+      | "inputValue"
+      | "selectedBehavior"
+      | "emptyText"
+      | "creatable"
+    >,
+    Pick<MultiselectBaseProps, "renderChip"> {
   /**
    * The `options` property defines the available options within the multiselect dropdown.
    * Each option is represented as an object conforming to the `MultiselectOption` structure,
@@ -116,7 +116,7 @@ export const Multiselect = forwardRef<HTMLDivElement, MultiselectProps>(
 
       ...restProps
     },
-    ref,
+    ref
   ) => {
     const {
       // Option props
@@ -271,7 +271,7 @@ export const Multiselect = forwardRef<HTMLDivElement, MultiselectProps>(
               focusedOptionIndex,
               event.key === Keys.ARROW_UP
                 ? FOCUS_ACTION_PREV
-                : FOCUS_ACTION_NEXT,
+                : FOCUS_ACTION_NEXT
             );
             return;
           }
@@ -387,10 +387,10 @@ export const Multiselect = forwardRef<HTMLDivElement, MultiselectProps>(
     useGlobalClicks(
       handleClickOutside,
       opened ? rootRef : null,
-      opened ? dropdownScrollBoxRef : null,
+      opened ? dropdownScrollBoxRef : null
     );
 
-    const controlledStatus = status || (opened ? 'focused' : 'default');
+    const controlledStatus = status || (opened ? "focused" : "default");
 
     return (
       <FormInput
@@ -455,5 +455,5 @@ export const Multiselect = forwardRef<HTMLDivElement, MultiselectProps>(
         )}
       </FormInput>
     );
-  },
+  }
 );
