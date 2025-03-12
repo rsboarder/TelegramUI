@@ -167,7 +167,19 @@ export const MultiselectBase = forwardRef<HTMLDivElement, MultiselectBaseProps>(
       onRemoveChipOption(optionToRemove);
     };
 
-    const handleClick = () => {
+    const handleClick = (e: MouseEvent<HTMLDivElement>) => {
+      // Check if the click was on a chip
+      const target = e.target as HTMLElement;
+      const isChipClick = target.closest('[role="option"]') !== null;
+
+      // If it's a chip click, stop propagation and don't focus the input
+      if (isChipClick) {
+        e.stopPropagation();
+        e.preventDefault();
+        return;
+      }
+
+      // Focus the input if it's not already focused
       const isFocused = document.activeElement === inputRef.current;
       if (!isFocused && inputRef.current) {
         inputRef.current.focus();
@@ -197,6 +209,14 @@ export const MultiselectBase = forwardRef<HTMLDivElement, MultiselectBaseProps>(
               className: styles.chip,
               value: option.value,
               tabIndex: -1,
+              onClick: (e) => {
+                e.stopPropagation();
+                e.preventDefault();
+              },
+              onMouseDown: (e) => {
+                e.stopPropagation();
+                e.preventDefault();
+              },
               after: (
                 <Tappable
                   Component="div"
