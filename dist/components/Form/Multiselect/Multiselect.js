@@ -78,12 +78,19 @@ import { useMultiselect } from "./hooks/useMultiselect";
     const [shouldOpenOnFocus, setShouldOpenOnFocus] = useState(true);
     // Track if we're in the process of toggling via the chevron
     const isTogglingRef = useRef(false);
+    // Track if the last mousedown was on a chip
+    const wasChipClickedRef = useRef(false);
     const handleFocus = ()=>{
         // If we're in the process of toggling via the chevron, don't change the dropdown state
         if (isTogglingRef.current) {
             return;
         }
-        // Only open the dropdown if we should open on focus
+        // If the last mousedown was on a chip, don't open the dropdown
+        if (wasChipClickedRef.current) {
+            wasChipClickedRef.current = false;
+            return;
+        }
+        // Open the dropdown if we should open on focus
         if (shouldOpenOnFocus) {
             setOpened(true);
             setFocusedOptionIndex(null);
@@ -239,6 +246,48 @@ import { useMultiselect } from "./hooks/useMultiselect";
             }, 100);
         }, 100);
     };
+    // Handle base click to toggle dropdown when no chips are selected
+    const handleBaseClick = (e)=>{
+        // Check if the click originated from the chevron or if we're in the toggling process
+        if (wasChevronClickedRef.current || disabled) {
+            return;
+        }
+        // Check if the click was on a chip
+        const target = e.target;
+        const isChipClick = target.closest('[role="option"]') !== null;
+        // If it's a chip click, stop propagation
+        if (isChipClick) {
+            e.stopPropagation();
+            e.preventDefault();
+            return;
+        }
+        if (opened) {
+            setShouldOpenOnFocus(false);
+            setOpened(false);
+        } else {
+            var _inputRef_current;
+            setOpened(true);
+            (_inputRef_current = inputRef.current) === null || _inputRef_current === void 0 ? void 0 : _inputRef_current.focus();
+        }
+    };
+    // Handle base mousedown to prevent immediate closing on first click
+    const handleBaseMouseDown = (e)=>{
+        // Check if the click was on a chip
+        const target = e.target;
+        const isChipClick = target.closest('[role="option"]') !== null;
+        // If it's a chip click, prevent default behavior
+        if (isChipClick) {
+            e.preventDefault();
+            e.stopPropagation();
+            wasChipClickedRef.current = true;
+            return;
+        }
+        // Only handle if not disabled
+        if (!disabled) {
+            e.preventDefault();
+            e.stopPropagation();
+        }
+    };
     const handleClickOutside = useCallback(()=>{
         // Don't close the dropdown if the chevron was clicked
         if (wasChevronClickedRef.current) {
@@ -280,7 +329,11 @@ import { useMultiselect } from "./hooks/useMultiselect";
                 role: "combobox",
                 "aria-expanded": opened,
                 "aria-controls": dropdownAriaId,
-                "aria-haspopup": "listbox"
+                "aria-haspopup": "listbox",
+                // Add click handler for the base component
+                onClick: handleBaseClick,
+                // Add onMouseDown handler to prevent immediate closing
+                onMouseDown: handleBaseMouseDown
             })),
             /*#__PURE__*/ _jsx(Icon20ChevronDown, {
                 ref: chevronRef,
