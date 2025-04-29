@@ -10,7 +10,7 @@ import { useEnhancedEffect } from "../../../hooks/useEnhancedEffect";
 import { useFloating } from "@floating-ui/react-dom";
 import { RootRenderer } from "../../Service/RootRenderer/RootRenderer";
 import { FloatingArrow } from "./components/FloatingArrow/FloatingArrow";
-import { DEFAULT_ARROW_HEIGHT, DEFAULT_ARROW_PADDING, DefaultIcon } from "./components/FloatingArrow/icons/arrow";
+import { DEFAULT_ARROW_HEIGHT, DEFAULT_ARROW_PADDING } from "./components/FloatingArrow/icons/arrow";
 import { autoUpdateFloatingElement } from "./helpers/autoUpdateFloatingElement";
 import { useFloatingMiddlewares } from "./hooks/useFloatingMiddlewares";
 /**
@@ -20,7 +20,7 @@ import { useFloatingMiddlewares } from "./hooks/useFloatingMiddlewares";
     var { // UseFloatingMiddlewaresOptions
     placement = "auto", sameWidth, offsetByMainAxis = 8, offsetByCrossAxis = 0, withArrow = true, customMiddlewares, // UseFloatingProps
     autoUpdateOnTargetResize = false, // ArrowProps
-    arrowProps, ArrowIcon = DefaultIcon, Component = "div", style, targetRef, className, children, portalContainer } = _param, restProps = _object_without_properties(_param, [
+    arrowProps, ArrowIcon, Component = "div", style, targetRef, className, children, portalContainer } = _param, restProps = _object_without_properties(_param, [
         "placement",
         "sameWidth",
         "offsetByMainAxis",
@@ -71,12 +71,13 @@ import { useFloatingMiddlewares } from "./hooks/useFloatingMiddlewares";
             style: _object_spread({}, style, floatingStyles),
             className: classNames("tgui-e9c83f4f150e5513", className),
             children: [
-                withArrow && /*#__PURE__*/ _jsx(FloatingArrow, _object_spread_props(_object_spread({}, arrowProps), {
+                withArrow && /*#__PURE__*/ _jsx(FloatingArrow, _object_spread(_object_spread_props(_object_spread({}, arrowProps), {
                     coords: middlewareData.arrow,
                     placement: resolvedPlacement,
-                    ref: setArrowRef,
+                    ref: setArrowRef
+                }), ArrowIcon ? {
                     Icon: ArrowIcon
-                })),
+                } : {})),
                 children
             ]
         }))

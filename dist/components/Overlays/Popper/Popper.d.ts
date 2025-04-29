@@ -13,7 +13,7 @@ export interface PopperProps extends Omit<UseFloatingMiddlewaresOptions, "arrowH
         padding?: number;
     };
     /** Optional custom component for the arrow icon, replacing the default. */
-    ArrowIcon?: FloatingArrowProps["Icon"];
+    ArrowIcon?: FloatingArrowProps["Icon"] | null;
     /** Defines the root element type of the Popper, allowing for semantic customization. */
     Component?: ElementType;
     /** Opt-in feature to automatically update Popper's position when the target element resizes. */

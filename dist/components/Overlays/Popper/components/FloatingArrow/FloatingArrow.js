@@ -16,7 +16,7 @@ const placementStyles = {
  * such as a tooltip to signify its association with a target element.
  * Supports custom arrow icons and positioning adjustments.
  */ export const FloatingArrow = /*#__PURE__*/ forwardRef((_param, ref)=>{
-    var { style, offset, isStaticOffset, coords, placement = 'bottom', Icon = DefaultIcon, className } = _param, restProps = _object_without_properties(_param, [
+    var { style, offset, isStaticOffset, coords, placement = "bottom", Icon = DefaultIcon, className } = _param, restProps = _object_without_properties(_param, [
         "style",
         "offset",
         "isStaticOffset",

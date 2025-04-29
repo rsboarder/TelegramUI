@@ -1,6 +1,6 @@
-import { ComponentType, HTMLAttributes, SVGAttributes } from 'react';
-import { Placement } from '@floating-ui/react-dom';
-import { Coords } from './helpers/getArrowPositionData';
+import { ComponentType, HTMLAttributes, SVGAttributes } from "react";
+import { Placement } from "@floating-ui/react-dom";
+import { Coords } from "./helpers/getArrowPositionData";
 export interface FloatingArrowProps extends HTMLAttributes<HTMLDivElement> {
     /** Optional distance from the target element, influencing the arrow's placement. */
     offset?: number;

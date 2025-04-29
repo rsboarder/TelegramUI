@@ -22,7 +22,7 @@ const placementStyles = {
     left: "tgui-b27d1c4f6222569e"
 };
 const FloatingArrow = /*#__PURE__*/ (0, _react.forwardRef)((_param, ref)=>{
-    var { style, offset, isStaticOffset, coords, placement = 'bottom', Icon = _arrow.DefaultIcon, className } = _param, restProps = _object_without_properties._(_param, [
+    var { style, offset, isStaticOffset, coords, placement = "bottom", Icon = _arrow.DefaultIcon, className } = _param, restProps = _object_without_properties._(_param, [
         "style",
         "offset",
         "isStaticOffset",

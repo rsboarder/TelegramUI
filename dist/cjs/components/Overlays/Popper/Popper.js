@@ -27,7 +27,7 @@ const Popper = /*#__PURE__*/ (0, _react.forwardRef)((_param, ref)=>{
     var { // UseFloatingMiddlewaresOptions
     placement = "auto", sameWidth, offsetByMainAxis = 8, offsetByCrossAxis = 0, withArrow = true, customMiddlewares, // UseFloatingProps
     autoUpdateOnTargetResize = false, // ArrowProps
-    arrowProps, ArrowIcon = _arrow.DefaultIcon, Component = "div", style, targetRef, className, children, portalContainer } = _param, restProps = _object_without_properties._(_param, [
+    arrowProps, ArrowIcon, Component = "div", style, targetRef, className, children, portalContainer } = _param, restProps = _object_without_properties._(_param, [
         "placement",
         "sameWidth",
         "offsetByMainAxis",
@@ -78,12 +78,13 @@ const Popper = /*#__PURE__*/ (0, _react.forwardRef)((_param, ref)=>{
             style: _object_spread._({}, style, floatingStyles),
             className: (0, _classNames.classNames)("tgui-e9c83f4f150e5513", className),
             children: [
-                withArrow && /*#__PURE__*/ (0, _jsxruntime.jsx)(_FloatingArrow.FloatingArrow, _object_spread_props._(_object_spread._({}, arrowProps), {
+                withArrow && /*#__PURE__*/ (0, _jsxruntime.jsx)(_FloatingArrow.FloatingArrow, _object_spread._(_object_spread_props._(_object_spread._({}, arrowProps), {
                     coords: middlewareData.arrow,
                     placement: resolvedPlacement,
-                    ref: setArrowRef,
+                    ref: setArrowRef
+                }), ArrowIcon ? {
                     Icon: ArrowIcon
-                })),
+                } : {})),
                 children
             ]
         }))
