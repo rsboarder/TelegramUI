@@ -23,7 +23,6 @@ import {
 import {
   DEFAULT_ARROW_HEIGHT,
   DEFAULT_ARROW_PADDING,
-  DefaultIcon,
 } from "./components/FloatingArrow/icons/arrow";
 import { autoUpdateFloatingElement } from "./helpers/autoUpdateFloatingElement";
 import {
@@ -47,7 +46,7 @@ export interface PopperProps
     padding?: number;
   };
   /** Optional custom component for the arrow icon, replacing the default. */
-  ArrowIcon?: FloatingArrowProps["Icon"];
+  ArrowIcon?: FloatingArrowProps["Icon"] | null;
   /** Defines the root element type of the Popper, allowing for semantic customization. */
   Component?: ElementType;
   /** Opt-in feature to automatically update Popper's position when the target element resizes. */
@@ -76,7 +75,7 @@ export const Popper = forwardRef(
 
       // ArrowProps
       arrowProps,
-      ArrowIcon = DefaultIcon,
+      ArrowIcon,
 
       Component = "div",
       style,
@@ -135,7 +134,7 @@ export const Popper = forwardRef(
               coords={middlewareData.arrow}
               placement={resolvedPlacement}
               ref={setArrowRef}
-              Icon={ArrowIcon}
+              {...(ArrowIcon ? { Icon: ArrowIcon } : {})}
             />
           )}
           {children}
