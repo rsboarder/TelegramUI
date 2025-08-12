@@ -20,6 +20,7 @@ import { renderOptionDefault } from "./constants";
         className: "tgui-70d34454bcf3c3e4",
         portalContainer: portalContainer,
         ArrowIcon: null,
+        withArrow: false,
         children: options.map((option, index)=>{
             if (isEmptyOptionPreset(option)) {
                 return /*#__PURE__*/ _jsx(Cell, {

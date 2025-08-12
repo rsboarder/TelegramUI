@@ -27,6 +27,7 @@ const MultiselectDropdown = /*#__PURE__*/ (0, _react.forwardRef)(({ dropdownAria
         className: "tgui-70d34454bcf3c3e4",
         portalContainer: portalContainer,
         ArrowIcon: null,
+        withArrow: false,
         children: options.map((option, index)=>{
             if ((0, _constants.isEmptyOptionPreset)(option)) {
                 return /*#__PURE__*/ (0, _jsxruntime.jsx)(_Cell.Cell, {
