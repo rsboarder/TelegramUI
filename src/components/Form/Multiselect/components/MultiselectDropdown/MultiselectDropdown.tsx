@@ -94,6 +94,7 @@ export const MultiselectDropdown = forwardRef<
         className={styles.wrapper}
         portalContainer={portalContainer}
         ArrowIcon={null}
+        withArrow={false}
       >
         {options.map((option, index) => {
           if (isEmptyOptionPreset(option)) {
