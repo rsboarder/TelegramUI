@@ -36,7 +36,7 @@ export const ModalOverlay = forwardRef<HTMLDivElement, ModalOverlayProps>(
         ref={ref}
         // Opacity on overlay is dynamically calculated based on the percentage of opened drawers
         // This is why we use rgba here and not background: token + opacity
-        style={{ background: `rgba(${r}, ${g}, ${b}, .4)` }}
+        style={{ background: `rgba(${r}, ${g}, ${b}, .8)` }}
         className={classNames(styles.wrapper, className)}
         {...props}
       />

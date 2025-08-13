@@ -1,18 +1,19 @@
 .wrapper {
+
+  display: flex;
   position: fixed;
+  right: 0;
   bottom: 0;
   left: 0;
-  right: 0;
   max-height: 96%;
 
   border-top-left-radius: 16px;
   border-top-right-radius: 16px;
-
-  display: flex;
   flex-direction: column;
 
   outline: none;
   background-color: var(--tgui--bg_color);
+  box-shadow: 0 4px 23px 0 rgba(0, 0, 0, .3);
   z-index: var(--tgui--z-index--overlay);
 }
 
