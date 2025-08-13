@@ -47,7 +47,7 @@ const ModalOverlay = /*#__PURE__*/ (0, _react.forwardRef)((_param, ref)=>{
         // Opacity on overlay is dynamically calculated based on the percentage of opened drawers
         // This is why we use rgba here and not background: token + opacity
         style: {
-            background: `rgba(${r}, ${g}, ${b}, .4)`
+            background: `rgba(${r}, ${g}, ${b}, .8)`
         },
         className: (0, _classNames.classNames)("tgui-3197096cb603b35a", className)
     }, props));
