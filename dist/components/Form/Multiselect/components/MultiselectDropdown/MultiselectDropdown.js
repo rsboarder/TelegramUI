@@ -15,7 +15,7 @@ import { renderOptionDefault } from "./constants";
         onMouseLeave: onMouseLeave,
         autoUpdateOnTargetResize: true,
         role: "listbox",
-        placement: "bottom",
+        placement: "auto",
         sameWidth: true,
         className: "tgui-70d34454bcf3c3e4",
         portalContainer: portalContainer,

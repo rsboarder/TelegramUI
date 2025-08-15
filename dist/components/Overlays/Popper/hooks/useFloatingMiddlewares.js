@@ -1,7 +1,7 @@
 import { useMemo } from "react";
 import { arrow, autoPlacement, flip, offset, shift, size } from "@floating-ui/react-dom";
 import { getAutoPlacementAlignment, isNotAutoPlacement } from "./helpers/alignment";
-export const useFloatingMiddlewares = ({ placement = 'bottom-start', arrowRef = null, withArrow, arrowHeight, arrowPadding, sameWidth, offsetByMainAxis = 0, offsetByCrossAxis = 0, customMiddlewares })=>{
+export const useFloatingMiddlewares = ({ placement = "auto", arrowRef = null, withArrow, arrowHeight, arrowPadding, sameWidth, offsetByMainAxis = 0, offsetByCrossAxis = 0, customMiddlewares })=>{
     return useMemo(()=>{
         const isNotAutoPlaced = isNotAutoPlacement(placement);
         const middlewares = [
@@ -12,11 +12,15 @@ export const useFloatingMiddlewares = ({ placement = 'bottom-start', arrowRef = 
         ];
         if (isNotAutoPlaced) {
             middlewares.push(flip({
-                fallbackAxisSideDirection: 'start'
+                fallbackAxisSideDirection: "start",
+                boundary: "viewport",
+                rootBoundary: "viewport"
             }));
         } else {
             middlewares.push(autoPlacement({
-                alignment: getAutoPlacementAlignment(placement)
+                alignment: getAutoPlacementAlignment(placement),
+                boundary: "viewport",
+                rootBoundary: "viewport"
             }));
         }
         middlewares.push(shift());

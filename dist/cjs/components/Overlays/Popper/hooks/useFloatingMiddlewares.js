@@ -11,7 +11,7 @@ Object.defineProperty(exports, "useFloatingMiddlewares", {
 const _react = require("react");
 const _reactdom = require("@floating-ui/react-dom");
 const _alignment = require("./helpers/alignment");
-const useFloatingMiddlewares = ({ placement = 'bottom-start', arrowRef = null, withArrow, arrowHeight, arrowPadding, sameWidth, offsetByMainAxis = 0, offsetByCrossAxis = 0, customMiddlewares })=>{
+const useFloatingMiddlewares = ({ placement = "auto", arrowRef = null, withArrow, arrowHeight, arrowPadding, sameWidth, offsetByMainAxis = 0, offsetByCrossAxis = 0, customMiddlewares })=>{
     return (0, _react.useMemo)(()=>{
         const isNotAutoPlaced = (0, _alignment.isNotAutoPlacement)(placement);
         const middlewares = [
@@ -22,11 +22,15 @@ const useFloatingMiddlewares = ({ placement = 'bottom-start', arrowRef = null, w
         ];
         if (isNotAutoPlaced) {
             middlewares.push((0, _reactdom.flip)({
-                fallbackAxisSideDirection: 'start'
+                fallbackAxisSideDirection: "start",
+                boundary: "viewport",
+                rootBoundary: "viewport"
             }));
         } else {
             middlewares.push((0, _reactdom.autoPlacement)({
-                alignment: (0, _alignment.getAutoPlacementAlignment)(placement)
+                alignment: (0, _alignment.getAutoPlacementAlignment)(placement),
+                boundary: "viewport",
+                rootBoundary: "viewport"
             }));
         }
         middlewares.push((0, _reactdom.shift)());

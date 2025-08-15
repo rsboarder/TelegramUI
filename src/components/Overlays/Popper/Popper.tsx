@@ -116,6 +116,58 @@ export const Popper = forwardRef(
       },
     });
 
+    // Debug logging for placement resolution with platform detection
+    useEnhancedEffect(() => {
+      if (process.env.NODE_ENV === 'development') {
+        const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+        const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+        
+        console.log('[Popper Debug] Platform info:', {
+          userAgent: navigator.userAgent,
+          isIOS,
+          isMobile,
+          viewportWidth: window.innerWidth,
+          viewportHeight: window.innerHeight,
+          screenHeight: window.screen.height,
+          availHeight: window.screen.availHeight,
+        });
+        
+        console.log('[Popper Debug] Placement:', {
+          initial: placement,
+          strict: strictPlacement,
+          resolved: resolvedPlacement,
+        });
+        
+        console.log('[Popper Debug] Middleware data:', middlewareData);
+        console.log('[Popper Debug] Floating styles:', floatingStyles);
+        
+        // Log autoPlacement details
+        if (middlewareData.autoPlacement) {
+          console.log('[Popper Debug] AutoPlacement:', {
+            index: middlewareData.autoPlacement.index,
+            overflowsCount: middlewareData.autoPlacement.overflows?.length,
+            overflows: middlewareData.autoPlacement.overflows,
+          });
+        }
+        
+        // Log reference and floating element dimensions
+        if (refs.reference && refs.floating) {
+          const refRect = (refs.reference as any).getBoundingClientRect?.();
+          const floatRect = (refs.floating as any).getBoundingClientRect?.();
+          if (refRect && floatRect) {
+            console.log('[Popper Debug] Element positions:', {
+              reference: refRect,
+              floating: floatRect,
+              spaceAbove: refRect.top,
+              spaceBelow: window.innerHeight - refRect.bottom,
+              dropdownHeight: floatRect.height,
+              shouldGoUp: floatRect.height > (window.innerHeight - refRect.bottom),
+            });
+          }
+        }
+      }
+    }, [placement, strictPlacement, resolvedPlacement, middlewareData, floatingStyles, refs]);
+
     useEnhancedEffect(() => {
       refs.setReference("current" in targetRef ? targetRef.current : targetRef);
     }, [refs.setReference, targetRef]);

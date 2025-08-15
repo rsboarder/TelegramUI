@@ -89,7 +89,7 @@ export const MultiselectDropdown = forwardRef<
         onMouseLeave={onMouseLeave}
         autoUpdateOnTargetResize
         role="listbox"
-        placement="bottom"
+        placement="auto"
         sameWidth
         className={styles.wrapper}
         portalContainer={portalContainer}

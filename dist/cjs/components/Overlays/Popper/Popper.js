@@ -65,6 +65,61 @@ const Popper = /*#__PURE__*/ (0, _react.forwardRef)((_param, ref)=>{
             });
         }
     });
+    // Debug logging for placement resolution with platform detection
+    (0, _useEnhancedEffect.useEnhancedEffect)(()=>{
+        if (process.env.NODE_ENV === 'development') {
+            const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+            const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+            console.log('[Popper Debug] Platform info:', {
+                userAgent: navigator.userAgent,
+                isIOS,
+                isMobile,
+                viewportWidth: window.innerWidth,
+                viewportHeight: window.innerHeight,
+                screenHeight: window.screen.height,
+                availHeight: window.screen.availHeight
+            });
+            console.log('[Popper Debug] Placement:', {
+                initial: placement,
+                strict: strictPlacement,
+                resolved: resolvedPlacement
+            });
+            console.log('[Popper Debug] Middleware data:', middlewareData);
+            console.log('[Popper Debug] Floating styles:', floatingStyles);
+            // Log autoPlacement details
+            if (middlewareData.autoPlacement) {
+                var _middlewareData_autoPlacement_overflows;
+                console.log('[Popper Debug] AutoPlacement:', {
+                    index: middlewareData.autoPlacement.index,
+                    overflowsCount: (_middlewareData_autoPlacement_overflows = middlewareData.autoPlacement.overflows) === null || _middlewareData_autoPlacement_overflows === void 0 ? void 0 : _middlewareData_autoPlacement_overflows.length,
+                    overflows: middlewareData.autoPlacement.overflows
+                });
+            }
+            // Log reference and floating element dimensions
+            if (refs.reference && refs.floating) {
+                var _refs_reference_getBoundingClientRect, _refs_reference, _refs_floating_getBoundingClientRect, _refs_floating;
+                const refRect = (_refs_reference_getBoundingClientRect = (_refs_reference = refs.reference).getBoundingClientRect) === null || _refs_reference_getBoundingClientRect === void 0 ? void 0 : _refs_reference_getBoundingClientRect.call(_refs_reference);
+                const floatRect = (_refs_floating_getBoundingClientRect = (_refs_floating = refs.floating).getBoundingClientRect) === null || _refs_floating_getBoundingClientRect === void 0 ? void 0 : _refs_floating_getBoundingClientRect.call(_refs_floating);
+                if (refRect && floatRect) {
+                    console.log('[Popper Debug] Element positions:', {
+                        reference: refRect,
+                        floating: floatRect,
+                        spaceAbove: refRect.top,
+                        spaceBelow: window.innerHeight - refRect.bottom,
+                        dropdownHeight: floatRect.height,
+                        shouldGoUp: floatRect.height > window.innerHeight - refRect.bottom
+                    });
+                }
+            }
+        }
+    }, [
+        placement,
+        strictPlacement,
+        resolvedPlacement,
+        middlewareData,
+        floatingStyles,
+        refs
+    ]);
     (0, _useEnhancedEffect.useEnhancedEffect)(()=>{
         refs.setReference("current" in targetRef ? targetRef.current : targetRef);
     }, [

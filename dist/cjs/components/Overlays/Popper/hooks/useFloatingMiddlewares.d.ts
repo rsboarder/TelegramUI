@@ -1,5 +1,5 @@
-import { ArrowOptions, Middleware } from '@floating-ui/react-dom';
-import { PlacementWithAuto } from './types';
+import { ArrowOptions, Middleware } from "@floating-ui/react-dom";
+import { PlacementWithAuto } from "./types";
 export interface UseFloatingMiddlewaresOptions {
     /** By default, the component will automatically choose the best placement */
     placement?: PlacementWithAuto;
@@ -8,7 +8,7 @@ export interface UseFloatingMiddlewaresOptions {
     /** Offset along the cross axis. */
     offsetByCrossAxis?: number;
     /** Ref for arrow element */
-    arrowRef?: ArrowOptions['element'];
+    arrowRef?: ArrowOptions["element"];
     /** Whether to display an arrow pointing to the anchor element. */
     withArrow?: boolean;
     /** The height of the arrow. This is added to `mainAxis` to prevent the arrow from overlapping the anchor element. */

@@ -22,7 +22,7 @@ const MultiselectDropdown = /*#__PURE__*/ (0, _react.forwardRef)(({ dropdownAria
         onMouseLeave: onMouseLeave,
         autoUpdateOnTargetResize: true,
         role: "listbox",
-        placement: "bottom",
+        placement: "auto",
         sameWidth: true,
         className: "tgui-70d34454bcf3c3e4",
         portalContainer: portalContainer,

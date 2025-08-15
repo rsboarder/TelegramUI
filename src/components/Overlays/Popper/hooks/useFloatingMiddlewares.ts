@@ -1,18 +1,22 @@
-import { useMemo } from 'react';
+import { useMemo } from "react";
 
 import {
   arrow,
   ArrowOptions,
   autoPlacement,
+  Boundary,
   flip,
   Middleware,
   offset,
   shift,
   size,
-} from '@floating-ui/react-dom';
+} from "@floating-ui/react-dom";
 
-import { getAutoPlacementAlignment, isNotAutoPlacement } from './helpers/alignment';
-import { PlacementWithAuto } from './types';
+import {
+  getAutoPlacementAlignment,
+  isNotAutoPlacement,
+} from "./helpers/alignment";
+import { PlacementWithAuto } from "./types";
 
 export interface UseFloatingMiddlewaresOptions {
   /** By default, the component will automatically choose the best placement */
@@ -22,7 +26,7 @@ export interface UseFloatingMiddlewaresOptions {
   /** Offset along the cross axis. */
   offsetByCrossAxis?: number;
   /** Ref for arrow element */
-  arrowRef?: ArrowOptions['element'];
+  arrowRef?: ArrowOptions["element"];
   /** Whether to display an arrow pointing to the anchor element. */
   withArrow?: boolean;
   /** The height of the arrow. This is added to `mainAxis` to prevent the arrow from overlapping the anchor element. */
@@ -36,7 +40,7 @@ export interface UseFloatingMiddlewaresOptions {
 }
 
 export const useFloatingMiddlewares = ({
-  placement = 'bottom-start',
+  placement = "auto",
   arrowRef = null,
   withArrow,
   arrowHeight,
@@ -51,20 +55,29 @@ export const useFloatingMiddlewares = ({
     const middlewares: Middleware[] = [
       offset({
         crossAxis: offsetByCrossAxis,
-        mainAxis: withArrow && arrowHeight ? offsetByMainAxis + arrowHeight : offsetByMainAxis,
+        mainAxis:
+          withArrow && arrowHeight
+            ? offsetByMainAxis + arrowHeight
+            : offsetByMainAxis,
       }),
     ];
 
     if (isNotAutoPlaced) {
       middlewares.push(
         flip({
-          fallbackAxisSideDirection: 'start',
-        }),
+          fallbackAxisSideDirection: "start",
+          boundary: "viewport" as Boundary,
+          rootBoundary: "viewport",
+        })
       );
     } else {
-      middlewares.push(autoPlacement({
-        alignment: getAutoPlacementAlignment(placement),
-      }));
+      middlewares.push(
+        autoPlacement({
+          alignment: getAutoPlacementAlignment(placement),
+          boundary: "viewport" as Boundary,
+          rootBoundary: "viewport",
+        })
+      );
     }
 
     middlewares.push(shift());
@@ -77,7 +90,7 @@ export const useFloatingMiddlewares = ({
               width: `${rects.reference.width}px`,
             });
           },
-        }),
+        })
       );
     }
 
@@ -90,7 +103,7 @@ export const useFloatingMiddlewares = ({
         arrow({
           element: arrowRef,
           padding: arrowPadding,
-        }),
+        })
       );
     }
 
