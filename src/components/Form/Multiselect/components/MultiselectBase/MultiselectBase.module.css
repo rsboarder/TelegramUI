@@ -1,9 +1,9 @@
 .wrapper {
   --tgui--multiselect--gap: 8px;
+  display: flex;
+  position: relative;
 
   overflow: hidden;
-  position: relative;
-  display: flex;
   flex-grow: 1;
   flex-shrink: 1;
   flex-wrap: wrap;
@@ -22,11 +22,11 @@
 
 .input {
   display: flex;
+  position: relative;
   justify-content: center;
   flex-direction: column;
   flex: 1;
   padding: 0 8px;
-  position: relative;
   inline-size: 100%;
   color: var(--tgui--text_color);
   background: transparent;
@@ -34,6 +34,7 @@
   box-shadow: none;
   appearance: none;
   outline: none;
+  pointer-events: none;
 }
 
 .input::placeholder {
