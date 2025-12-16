@@ -63,6 +63,7 @@ const Modal = /*#__PURE__*/ (0, _react.forwardRef)((_param, ref)=>{
         preventScrollRestoration: preventScrollRestoration,
         dismissible: dismissible,
         disablePreventScroll: true,
+        repositionInputs: false,
         children: [
             trigger && /*#__PURE__*/ (0, _jsxruntime.jsx)(_vaul.Drawer.Trigger, {
                 asChild: true,

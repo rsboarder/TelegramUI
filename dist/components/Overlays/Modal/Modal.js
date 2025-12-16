@@ -57,6 +57,7 @@ import { ModalOverlay } from "./components/ModalOverlay/ModalOverlay";
         preventScrollRestoration: preventScrollRestoration,
         dismissible: dismissible,
         disablePreventScroll: true,
+        repositionInputs: false,
         children: [
             trigger && /*#__PURE__*/ _jsx(Drawer.Trigger, {
                 asChild: true,
