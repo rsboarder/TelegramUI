@@ -111,6 +111,7 @@ export const Modal = forwardRef<HTMLDivElement, ModalProps>(
         preventScrollRestoration={preventScrollRestoration}
         dismissible={dismissible}
         disablePreventScroll
+        repositionInputs={false}
       >
         {trigger && <Drawer.Trigger asChild>{trigger}</Drawer.Trigger>}
         <Drawer.Portal container={portal}>
