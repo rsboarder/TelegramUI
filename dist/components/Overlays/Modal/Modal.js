@@ -85,7 +85,8 @@ import { ModalOverlay } from "./components/ModalOverlay/ModalOverlay";
                                     height: 28,
                                     margin: 0,
                                     marginBottom: -28,
-                                    zIndex: 10
+                                    zIndex: 10,
+                                    position: "relative"
                                 }
                             }),
                             header,

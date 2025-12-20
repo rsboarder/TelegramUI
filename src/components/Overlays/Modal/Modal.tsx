@@ -138,6 +138,7 @@ export const Modal = forwardRef<HTMLDivElement, ModalProps>(
                   margin: 0,
                   marginBottom: -28,
                   zIndex: 10,
+                  position: "relative",
                 }}
               />
             )}
