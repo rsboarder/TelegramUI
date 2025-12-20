@@ -88,12 +88,10 @@ const Modal = /*#__PURE__*/ (0, _react.forwardRef)((_param, ref)=>{
                                 style: {
                                     background: "transparent",
                                     width: "100%",
-                                    height: 20,
+                                    height: 28,
                                     margin: 0,
-                                    position: "absolute",
-                                    top: 0,
-                                    left: 0,
-                                    right: 0
+                                    marginBottom: -28,
+                                    zIndex: 10
                                 }
                             }),
                             header,
