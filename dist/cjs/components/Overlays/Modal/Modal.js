@@ -84,6 +84,18 @@ const Modal = /*#__PURE__*/ (0, _react.forwardRef)((_param, ref)=>{
                             /*#__PURE__*/ (0, _jsxruntime.jsx)(_VisuallyHidden.VisuallyHidden, {
                                 children: /*#__PURE__*/ (0, _jsxruntime.jsx)(_vaul.Drawer.Title, {})
                             }),
+                            handleOnly && /*#__PURE__*/ (0, _jsxruntime.jsx)(_vaul.Drawer.Handle, {
+                                style: {
+                                    background: "transparent",
+                                    width: "100%",
+                                    height: 20,
+                                    margin: 0,
+                                    position: "absolute",
+                                    top: 0,
+                                    left: 0,
+                                    right: 0
+                                }
+                            }),
                             header,
                             /*#__PURE__*/ (0, _jsxruntime.jsx)("div", {
                                 className: "tgui-5dc6ad1ca3ac3ed4",

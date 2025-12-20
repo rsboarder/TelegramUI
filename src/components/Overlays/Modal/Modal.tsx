@@ -129,6 +129,20 @@ export const Modal = forwardRef<HTMLDivElement, ModalProps>(
             <VisuallyHidden>
               <Drawer.Title />
             </VisuallyHidden>
+            {handleOnly && (
+              <Drawer.Handle
+                style={{
+                  background: "transparent",
+                  width: "100%",
+                  height: 20,
+                  margin: 0,
+                  position: "absolute",
+                  top: 0,
+                  left: 0,
+                  right: 0,
+                }}
+              />
+            )}
             {header}
             <div className={styles.body}>{children}</div>
           </Drawer.Content>

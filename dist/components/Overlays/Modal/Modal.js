@@ -78,6 +78,18 @@ import { ModalOverlay } from "./components/ModalOverlay/ModalOverlay";
                             /*#__PURE__*/ _jsx(VisuallyHidden, {
                                 children: /*#__PURE__*/ _jsx(Drawer.Title, {})
                             }),
+                            handleOnly && /*#__PURE__*/ _jsx(Drawer.Handle, {
+                                style: {
+                                    background: "transparent",
+                                    width: "100%",
+                                    height: 20,
+                                    margin: 0,
+                                    position: "absolute",
+                                    top: 0,
+                                    left: 0,
+                                    right: 0
+                                }
+                            }),
                             header,
                             /*#__PURE__*/ _jsx("div", {
                                 className: "tgui-5dc6ad1ca3ac3ed4",
