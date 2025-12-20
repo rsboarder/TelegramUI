@@ -22,7 +22,7 @@ const _ModalClose = require("./components/ModalClose/ModalClose");
 const _ModalHeader = require("./components/ModalHeader/ModalHeader");
 const _ModalOverlay = require("./components/ModalOverlay/ModalOverlay");
 const Modal = /*#__PURE__*/ (0, _react.forwardRef)((_param, ref)=>{
-    var { overlayComponent = /*#__PURE__*/ (0, _jsxruntime.jsx)(_ModalOverlay.ModalOverlay, {}), open, onOpenChange, header, className, children, nested, trigger, closeThreshold, scrollLockTimeout, snapPoints, fadeFromIndex, modal, preventScrollRestoration, dismissible } = _param, restProps = _object_without_properties._(_param, [
+    var { overlayComponent = /*#__PURE__*/ (0, _jsxruntime.jsx)(_ModalOverlay.ModalOverlay, {}), open, onOpenChange, header, className, children, nested, trigger, closeThreshold, scrollLockTimeout, snapPoints, fadeFromIndex, modal, preventScrollRestoration, dismissible, handleOnly } = _param, restProps = _object_without_properties._(_param, [
         "overlayComponent",
         "open",
         "onOpenChange",
@@ -37,7 +37,8 @@ const Modal = /*#__PURE__*/ (0, _react.forwardRef)((_param, ref)=>{
         "fadeFromIndex",
         "modal",
         "preventScrollRestoration",
-        "dismissible"
+        "dismissible",
+        "handleOnly"
     ]);
     var _container_portalContainer;
     const container = (0, _useAppRootContext.useAppRootContext)();
@@ -62,6 +63,7 @@ const Modal = /*#__PURE__*/ (0, _react.forwardRef)((_param, ref)=>{
         modal: modal,
         preventScrollRestoration: preventScrollRestoration,
         dismissible: dismissible,
+        handleOnly: handleOnly,
         disablePreventScroll: true,
         repositionInputs: false,
         children: [

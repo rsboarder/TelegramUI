@@ -51,6 +51,8 @@ export interface ModalProps
   dismissible?: boolean;
   /** Prevents the modal from preventing scroll when opened */
   disablePreventScroll?: boolean;
+  /** When true, dragging will only be possible by the handle, enabling text selection in content */
+  handleOnly?: boolean;
 }
 
 type ModalWithComponents = ForwardRefExoticComponent<
@@ -84,6 +86,7 @@ export const Modal = forwardRef<HTMLDivElement, ModalProps>(
       modal,
       preventScrollRestoration,
       dismissible,
+      handleOnly,
       ...restProps
     },
     ref
@@ -110,6 +113,7 @@ export const Modal = forwardRef<HTMLDivElement, ModalProps>(
         modal={modal}
         preventScrollRestoration={preventScrollRestoration}
         dismissible={dismissible}
+        handleOnly={handleOnly}
         disablePreventScroll
         repositionInputs={false}
       >

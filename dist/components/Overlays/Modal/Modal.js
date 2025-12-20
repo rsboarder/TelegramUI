@@ -16,7 +16,7 @@ import { ModalOverlay } from "./components/ModalOverlay/ModalOverlay";
  * It leverages the Drawer component from 'vaul' for its base functionality, enhanced with additional properties
  * and behaviors specific to modal dialogues, such as overlay management and nested modals.
  */ export const Modal = /*#__PURE__*/ forwardRef((_param, ref)=>{
-    var { overlayComponent = /*#__PURE__*/ _jsx(ModalOverlay, {}), open, onOpenChange, header, className, children, nested, trigger, closeThreshold, scrollLockTimeout, snapPoints, fadeFromIndex, modal, preventScrollRestoration, dismissible } = _param, restProps = _object_without_properties(_param, [
+    var { overlayComponent = /*#__PURE__*/ _jsx(ModalOverlay, {}), open, onOpenChange, header, className, children, nested, trigger, closeThreshold, scrollLockTimeout, snapPoints, fadeFromIndex, modal, preventScrollRestoration, dismissible, handleOnly } = _param, restProps = _object_without_properties(_param, [
         "overlayComponent",
         "open",
         "onOpenChange",
@@ -31,7 +31,8 @@ import { ModalOverlay } from "./components/ModalOverlay/ModalOverlay";
         "fadeFromIndex",
         "modal",
         "preventScrollRestoration",
-        "dismissible"
+        "dismissible",
+        "handleOnly"
     ]);
     var _container_portalContainer;
     const container = useAppRootContext();
@@ -56,6 +57,7 @@ import { ModalOverlay } from "./components/ModalOverlay/ModalOverlay";
         modal: modal,
         preventScrollRestoration: preventScrollRestoration,
         dismissible: dismissible,
+        handleOnly: handleOnly,
         disablePreventScroll: true,
         repositionInputs: false,
         children: [

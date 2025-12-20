@@ -31,6 +31,8 @@ export interface ModalProps extends Omit<HTMLAttributes<HTMLDivElement>, "onAnim
     dismissible?: boolean;
     /** Prevents the modal from preventing scroll when opened */
     disablePreventScroll?: boolean;
+    /** When true, dragging will only be possible by the handle, enabling text selection in content */
+    handleOnly?: boolean;
 }
 type ModalWithComponents = ForwardRefExoticComponent<ModalProps & RefAttributes<HTMLDivElement>> & {
     Header: typeof ModalHeader;
