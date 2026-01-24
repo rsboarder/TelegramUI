@@ -8,110 +8,25 @@ Object.defineProperty(exports, "MultiselectBase", {
         return MultiselectBase;
     }
 });
-var _react = require("react");
-var _MultiselectBasemodulecss = /*#__PURE__*/ _interop_require_default(require("./MultiselectBase.module.css"));
-var _accessibility = require("helpers/accessibility");
-var _classNames = require("helpers/classNames");
-var _dom = require("helpers/dom");
-var _useExternalRefs = require("hooks/useExternalRefs");
-var _dom1 = require("@floating-ui/utils/dom");
-var _cancel = require("icons/16/cancel");
-var _Tappable = require("components/Service/Tappable/Tappable");
-var _Subheadline = require("components/Typography/Subheadline/Subheadline");
-var _getValueOptionByHTMLElement = require("./helpers/getValueOptionByHTMLElement");
-var _constants = require("./constants");
-function _define_property(obj, key, value) {
-    if (key in obj) {
-        Object.defineProperty(obj, key, {
-            value: value,
-            enumerable: true,
-            configurable: true,
-            writable: true
-        });
-    } else {
-        obj[key] = value;
-    }
-    return obj;
-}
-function _interop_require_default(obj) {
-    return obj && obj.__esModule ? obj : {
-        default: obj
-    };
-}
-function _object_spread(target) {
-    for(var i = 1; i < arguments.length; i++){
-        var source = arguments[i] != null ? arguments[i] : {};
-        var ownKeys = Object.keys(source);
-        if (typeof Object.getOwnPropertySymbols === "function") {
-            ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function(sym) {
-                return Object.getOwnPropertyDescriptor(source, sym).enumerable;
-            }));
-        }
-        ownKeys.forEach(function(key) {
-            _define_property(target, key, source[key]);
-        });
-    }
-    return target;
-}
-function ownKeys(object, enumerableOnly) {
-    var keys = Object.keys(object);
-    if (Object.getOwnPropertySymbols) {
-        var symbols = Object.getOwnPropertySymbols(object);
-        if (enumerableOnly) {
-            symbols = symbols.filter(function(sym) {
-                return Object.getOwnPropertyDescriptor(object, sym).enumerable;
-            });
-        }
-        keys.push.apply(keys, symbols);
-    }
-    return keys;
-}
-function _object_spread_props(target, source) {
-    source = source != null ? source : {};
-    if (Object.getOwnPropertyDescriptors) {
-        Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));
-    } else {
-        ownKeys(Object(source)).forEach(function(key) {
-            Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));
-        });
-    }
-    return target;
-}
-function _object_without_properties(source, excluded) {
-    if (source == null) return {};
-    var target = _object_without_properties_loose(source, excluded);
-    var key, i;
-    if (Object.getOwnPropertySymbols) {
-        var sourceSymbolKeys = Object.getOwnPropertySymbols(source);
-        for(i = 0; i < sourceSymbolKeys.length; i++){
-            key = sourceSymbolKeys[i];
-            if (excluded.indexOf(key) >= 0) continue;
-            if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue;
-            target[key] = source[key];
-        }
-    }
-    return target;
-}
-function _object_without_properties_loose(source, excluded) {
-    if (source == null) return {};
-    var target = {};
-    var sourceKeys = Object.keys(source);
-    var key, i;
-    for(i = 0; i < sourceKeys.length; i++){
-        key = sourceKeys[i];
-        if (excluded.indexOf(key) >= 0) continue;
-        target[key] = source[key];
-    }
-    return target;
-}
-function _type_of(obj) {
-    "@swc/helpers - typeof";
-    return obj && typeof Symbol !== "undefined" && obj.constructor === Symbol ? "symbol" : typeof obj;
-}
-var MultiselectBase = /*#__PURE__*/ (0, _react.forwardRef)(function(_param, ref) {
-    var inputRef = _param.inputRef, className = _param.className, // Option props
-    chipsValue = _param.chipsValue, onAddChipOption = _param.onAddChipOption, onRemoveChipOption = _param.onRemoveChipOption, _param_renderChip = _param.renderChip, renderChip = _param_renderChip === void 0 ? _constants.renderChipDefault : _param_renderChip, // Input props
-    value = _param.value, placeholder = _param.placeholder, disabled = _param.disabled, readOnly = _param.readOnly, _param_searchable = _param.searchable, searchable = _param_searchable === void 0 ? true : _param_searchable, restProps = _object_without_properties(_param, [
+const _object_spread = require("@swc/helpers/_/_object_spread");
+const _object_spread_props = require("@swc/helpers/_/_object_spread_props");
+const _object_without_properties = require("@swc/helpers/_/_object_without_properties");
+const _jsxruntime = require("react/jsx-runtime");
+const _react = require("react");
+const _accessibility = require("../../../../../helpers/accessibility");
+const _classNames = require("../../../../../helpers/classNames");
+const _dom = require("../../../../../helpers/dom");
+const _useExternalRefs = require("../../../../../hooks/useExternalRefs");
+const _dom1 = require("@floating-ui/utils/dom");
+const _cancel = require("../../../../../icons/16/cancel");
+const _Tappable = require("../../../../Service/Tappable/Tappable");
+const _Subheadline = require("../../../../Typography/Subheadline/Subheadline");
+const _getValueOptionByHTMLElement = require("./helpers/getValueOptionByHTMLElement");
+const _constants = require("./constants");
+const MultiselectBase = /*#__PURE__*/ (0, _react.forwardRef)((_param, ref)=>{
+    var { inputRef, className, // Option props
+    chipsValue, onAddChipOption, onRemoveChipOption, renderChip = _constants.renderChipDefault, // Input props
+    value, placeholder, disabled, readOnly, searchable = true } = _param, restProps = _object_without_properties._(_param, [
         "inputRef",
         "className",
         "chipsValue",
@@ -124,21 +39,21 @@ var MultiselectBase = /*#__PURE__*/ (0, _react.forwardRef)(function(_param, ref)
         "readOnly",
         "searchable"
     ]);
-    var listRef = (0, _useExternalRefs.useExternRef)(ref);
-    var valueLength = chipsValue.length;
-    var withPlaceholder = valueLength === 0;
-    var isDisabled = disabled;
-    var isReadOnly = readOnly || !searchable;
-    var handleKeyDown = function(event) {
-        var targetEl = event.target;
-        var inputEl = inputRef.current;
+    const listRef = (0, _useExternalRefs.useExternRef)(ref);
+    const valueLength = chipsValue.length;
+    const withPlaceholder = valueLength === 0;
+    const isDisabled = disabled;
+    const isReadOnly = readOnly || !searchable;
+    const handleKeyDown = (event)=>{
+        const targetEl = event.target;
+        const inputEl = inputRef.current;
         if (event.defaultPrevented || !inputEl || !(0, _dom1.isHTMLElement)(targetEl)) {
             return;
         }
-        var lastOptionIndex = valueLength - 1;
-        var nextInputValue = inputEl.value;
-        var isInputEl = targetEl === inputEl;
-        var isInputValueEmpty = nextInputValue === "";
+        const lastOptionIndex = valueLength - 1;
+        const nextInputValue = inputEl.value;
+        const isInputEl = targetEl === inputEl;
+        const isInputValueEmpty = nextInputValue === "";
         switch(event.key){
             case _accessibility.Keys.ENTER:
                 {
@@ -151,7 +66,7 @@ var MultiselectBase = /*#__PURE__*/ (0, _react.forwardRef)(function(_param, ref)
             case _accessibility.Keys.BACKSPACE:
                 {
                     if (valueLength) {
-                        var option = isInputEl && isInputValueEmpty ? chipsValue[lastOptionIndex] : (0, _getValueOptionByHTMLElement.getValueOptionByHTMLElement)(chipsValue, targetEl);
+                        const option = isInputEl && isInputValueEmpty ? chipsValue[lastOptionIndex] : (0, _getValueOptionByHTMLElement.getValueOptionByHTMLElement)(chipsValue, targetEl);
                         if (!option) {
                             return;
                         }
@@ -169,14 +84,14 @@ var MultiselectBase = /*#__PURE__*/ (0, _react.forwardRef)(function(_param, ref)
                     if (!valueLength || !listRef.current) {
                         break;
                     }
-                    var isSelectionOnFirstLetter = inputEl.selectionStart === 0;
-                    var isRightSelection = event.key === _accessibility.Keys.ARROW_RIGHT && isSelectionOnFirstLetter;
+                    const isSelectionOnFirstLetter = inputEl.selectionStart === 0;
+                    const isRightSelection = event.key === _accessibility.Keys.ARROW_RIGHT && isSelectionOnFirstLetter;
                     if (!isInputValueEmpty && !isSelectionOnFirstLetter || isRightSelection) {
                         break;
                     }
                     event.preventDefault();
-                    var foundEl = null;
-                    var horizontalSide = (0, _accessibility.getHorizontalSideByKey)(event.key);
+                    let foundEl = null;
+                    const horizontalSide = (0, _accessibility.getHorizontalSideByKey)(event.key);
                     if (isInputEl && (event.key === _accessibility.Keys.ARROW_UP || event.key === _accessibility.Keys.ARROW_LEFT)) {
                         foundEl = (0, _dom.getHTMLElementByChildren)(listRef.current.children, lastOptionIndex);
                     } else if (horizontalSide) {
@@ -189,15 +104,15 @@ var MultiselectBase = /*#__PURE__*/ (0, _react.forwardRef)(function(_param, ref)
                 break;
         }
     };
-    var handleChipRemove = function(event, optionToRemove) {
+    const handleChipRemove = (event, optionToRemove)=>{
         event.preventDefault();
         event.stopPropagation();
         onRemoveChipOption(optionToRemove);
     };
-    var handleClick = function(e) {
+    const handleClick = (e)=>{
         // Check if the click was on a chip
-        var target = e.target;
-        var isChipClick = target.closest('[role="option"]') !== null;
+        const target = e.target;
+        const isChipClick = target.closest('[role="option"]') !== null;
         // If it's a chip click, stop propagation and don't focus the input
         if (isChipClick) {
             e.stopPropagation();
@@ -205,65 +120,67 @@ var MultiselectBase = /*#__PURE__*/ (0, _react.forwardRef)(function(_param, ref)
             return;
         }
         // Focus the input if it's not already focused
-        var isFocused = document.activeElement === inputRef.current;
+        const isFocused = document.activeElement === inputRef.current;
         if (!isFocused && inputRef.current) {
             inputRef.current.focus();
         }
     };
     return(// eslint-disable-next-line jsx-a11y/interactive-supports-focus
-    /*#__PURE__*/ React.createElement("div", {
+    /*#__PURE__*/ (0, _jsxruntime.jsxs)("div", {
         ref: listRef,
-        className: (0, _classNames.classNames)(_MultiselectBasemodulecss.default.wrapper, withPlaceholder && _MultiselectBasemodulecss.default["wrapper--withPlaceholder"], className),
+        className: (0, _classNames.classNames)("tgui-c56e136f855e5144", withPlaceholder && "tgui-ac1d436c45aafe04", className),
         onClick: isDisabled ? undefined : handleClick,
         role: "listbox",
         "aria-orientation": "horizontal",
         "aria-disabled": disabled,
         "aria-readonly": isReadOnly,
-        onKeyDown: isDisabled ? undefined : handleKeyDown
-    }, chipsValue.map(function(option, index) {
-        return /*#__PURE__*/ React.createElement(_react.Fragment, {
-            key: "".concat(_type_of(option.value), "-").concat(option.label)
-        }, renderChip({
-            children: option.label,
-            className: _MultiselectBasemodulecss.default.chip,
-            value: option.value,
-            tabIndex: -1,
-            onClick: function(e) {
-                e.stopPropagation();
-                e.preventDefault();
-            },
-            onMouseDown: function(e) {
-                e.stopPropagation();
-                e.preventDefault();
-            },
-            after: /*#__PURE__*/ React.createElement(_Tappable.Tappable, {
-                Component: "div",
-                interactiveAnimation: "opacity",
-                onClick: function(event) {
-                    return handleChipRemove(event, option);
-                },
-                className: _MultiselectBasemodulecss.default.closeIcon
-            }, /*#__PURE__*/ React.createElement(_cancel.Icon16Cancel, null)),
-            role: "option",
-            "aria-selected": true,
-            "aria-posinset": index + 1,
-            "aria-setsize": valueLength
-        }));
-    }), /*#__PURE__*/ React.createElement(_Subheadline.Subheadline, _object_spread_props(_object_spread({
-        ref: inputRef,
-        "aria-autocomplete": "list",
-        autoCapitalize: "none",
-        autoComplete: "off",
-        autoCorrect: "off",
-        spellCheck: false
-    }, restProps), {
-        Component: "input",
-        type: "text",
-        className: _MultiselectBasemodulecss.default.input,
-        disabled: disabled,
-        readOnly: isReadOnly,
-        inputMode: searchable ? undefined : 'none',
-        placeholder: withPlaceholder ? placeholder : undefined
-    }))));
+        onKeyDown: isDisabled ? undefined : handleKeyDown,
+        children: [
+            chipsValue.map((option, index)=>/*#__PURE__*/ (0, _jsxruntime.jsx)(_react.Fragment, {
+                    children: renderChip({
+                        children: option.label,
+                        className: "tgui-991d85450550abb9",
+                        value: option.value,
+                        tabIndex: -1,
+                        onClick: (e)=>{
+                            e.stopPropagation();
+                            e.preventDefault();
+                        },
+                        onMouseDown: (e)=>{
+                            e.stopPropagation();
+                            e.preventDefault();
+                        },
+                        after: /*#__PURE__*/ (0, _jsxruntime.jsx)(_Tappable.Tappable, {
+                            Component: "div",
+                            interactiveAnimation: "opacity",
+                            onClick: (event)=>handleChipRemove(event, option),
+                            className: "tgui-0b4134fd8d5c05ac",
+                            children: /*#__PURE__*/ (0, _jsxruntime.jsx)(_cancel.Icon16Cancel, {})
+                        }),
+                        role: "option",
+                        "aria-selected": true,
+                        "aria-posinset": index + 1,
+                        "aria-setsize": valueLength
+                    })
+                }, `${typeof option.value}-${option.label}`)),
+            /*#__PURE__*/ (0, _jsxruntime.jsx)(_Subheadline.Subheadline, _object_spread_props._(_object_spread._({
+                ref: inputRef,
+                "aria-autocomplete": "list",
+                autoCapitalize: "none",
+                autoComplete: "off",
+                autoCorrect: "off",
+                spellCheck: false
+            }, restProps), {
+                Component: "input",
+                type: "text",
+                className: "tgui-41e02fd2529dfbd2",
+                disabled: disabled,
+                readOnly: isReadOnly,
+                inputMode: searchable ? undefined : 'none',
+                placeholder: withPlaceholder ? placeholder : undefined
+            }))
+        ]
+    }));
 });
 
+//# sourceMappingURL=MultiselectBase.js.map
