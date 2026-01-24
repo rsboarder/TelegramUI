@@ -1,5 +1,5 @@
 import { ChangeEvent } from 'react';
-import { MultiselectOption } from '../../../../../components/Form/Multiselect/types';
+import { MultiselectOption } from 'components/Form/Multiselect/types';
 import { FilterFn } from './helpers/filter';
 import { type UseMultiselectInputProps } from './useMultiselectInput';
 export interface UseMultiselectProps extends UseMultiselectInputProps {
@@ -33,9 +33,9 @@ export declare const useMultiselect: ({ disabled, value: valueProp, defaultValue
     focusedOptionIndex: number | null;
     setFocusedOption: import("react").Dispatch<import("react").SetStateAction<MultiselectOption | null>>;
     setFocusedOptionIndex: import("react").Dispatch<import("react").SetStateAction<number | null>>;
-    addOption: (newValue: import("../../../../../components/Form/Multiselect/types").MultiselectOptionValue | MultiselectOption) => void;
+    addOption: (newValue: MultiselectOption | import("components/Form/Multiselect/types").MultiselectOptionValue) => void;
     addOptionFromInput: (inputValueToAdd: string) => void;
-    removeOption: (newValue: import("../../../../../components/Form/Multiselect/types").MultiselectOptionValue | MultiselectOption) => void;
+    removeOption: (newValue: MultiselectOption | import("components/Form/Multiselect/types").MultiselectOptionValue) => void;
     inputRef: import("react").RefObject<HTMLInputElement>;
     clearInput: () => void;
 };

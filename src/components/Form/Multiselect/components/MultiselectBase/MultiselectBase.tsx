@@ -38,6 +38,8 @@ export interface MultiselectBaseProps
   onAddChipOption: (optionText: string) => void;
   /** Callback function to remove a selected chip. */
   onRemoveChipOption: (option: MultiselectOption) => void;
+  /** When false, disables keyboard input while keeping dropdown interaction. Default: true */
+  searchable?: boolean;
 }
 
 /**
@@ -60,6 +62,7 @@ export const MultiselectBase = forwardRef<HTMLDivElement, MultiselectBaseProps>(
       placeholder,
       disabled,
       readOnly,
+      searchable = true,
       ...restProps
     },
     ref
@@ -68,7 +71,8 @@ export const MultiselectBase = forwardRef<HTMLDivElement, MultiselectBaseProps>(
 
     const valueLength = chipsValue.length;
     const withPlaceholder = valueLength === 0;
-    const isDisabled = disabled || readOnly;
+    const isDisabled = disabled;
+    const isReadOnly = readOnly || !searchable;
 
     const handleKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
       const targetEl = event.target;
@@ -199,7 +203,7 @@ export const MultiselectBase = forwardRef<HTMLDivElement, MultiselectBaseProps>(
         role="listbox"
         aria-orientation="horizontal"
         aria-disabled={disabled}
-        aria-readonly={readOnly}
+        aria-readonly={isReadOnly}
         onKeyDown={isDisabled ? undefined : handleKeyDown}
       >
         {chipsValue.map((option, index) => (
@@ -246,7 +250,8 @@ export const MultiselectBase = forwardRef<HTMLDivElement, MultiselectBaseProps>(
           type="text"
           className={styles.input}
           disabled={disabled}
-          readOnly={readOnly}
+          readOnly={isReadOnly}
+          inputMode={searchable ? undefined : 'none'}
           placeholder={withPlaceholder ? placeholder : undefined}
         />
       </div>

@@ -1,5 +1,5 @@
 import { HTMLAttributes, ReactElement, ReactNode } from 'react';
-import { LinkProps } from '../../../components/Navigation/Link/Link';
+import { LinkProps } from 'components/Navigation/Link/Link';
 export interface SnackbarProps extends HTMLAttributes<HTMLDivElement> {
     /** Element or component to be displayed on the left side of the snackbar. */
     before?: ReactNode;

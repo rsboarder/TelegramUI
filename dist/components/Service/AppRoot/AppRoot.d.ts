@@ -1,5 +1,5 @@
 import { HTMLAttributes } from 'react';
-import { AppRootContextInterface } from '../../../components/Service/AppRoot/AppRootContext';
+import { AppRootContextInterface } from 'components/Service/AppRoot/AppRootContext';
 export interface AppRootProps extends HTMLAttributes<HTMLDivElement> {
     /** Application platform, determined automatically if nothing passed */
     platform?: AppRootContextInterface['platform'];

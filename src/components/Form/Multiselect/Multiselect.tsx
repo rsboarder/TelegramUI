@@ -62,7 +62,7 @@ export interface MultiselectProps
       | "emptyText"
       | "creatable"
     >,
-    Pick<MultiselectBaseProps, "renderChip"> {
+    Pick<MultiselectBaseProps, "renderChip" | "searchable"> {
   /**
    * The `options` property defines the available options within the multiselect dropdown.
    * Each option is represented as an object conforming to the `MultiselectOption` structure,
@@ -113,6 +113,9 @@ export const Multiselect = forwardRef<HTMLDivElement, MultiselectProps>(
 
       // Portal container
       portalContainer,
+
+      // Searchable prop
+      searchable,
 
       ...restProps
     },
@@ -475,6 +478,7 @@ export const Multiselect = forwardRef<HTMLDivElement, MultiselectProps>(
           onFocus={callMultiple(handleFocus, onFocus)}
           onBlur={callMultiple(handleBlur, onBlur)}
           onKeyDown={callMultiple(handleKeyDown, onKeyDown)}
+          searchable={searchable}
           // a11y props
           role="combobox"
           aria-expanded={opened}

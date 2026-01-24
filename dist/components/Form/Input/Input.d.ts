@@ -1,5 +1,5 @@
 import { InputHTMLAttributes } from 'react';
-import { FormPublicProps } from '../../../components/Form/FormInput/FormInput';
+import { FormPublicProps } from 'components/Form/FormInput/FormInput';
 export interface InputProps extends FormPublicProps, InputHTMLAttributes<HTMLInputElement> {
 }
 /**

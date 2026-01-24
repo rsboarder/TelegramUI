@@ -1,5 +1,5 @@
 import { HTMLAttributes, ReactElement } from 'react';
-import { AvatarStackProps } from '../../../../../../components/Blocks/AvatarStack/AvatarStack';
+import { AvatarStackProps } from 'components/Blocks/AvatarStack/AvatarStack';
 export interface InfoProps extends HTMLAttributes<HTMLDivElement> {
     /** Determines the type of content to display, affecting the layout and styling. */
     type: 'text' | 'avatarStack';

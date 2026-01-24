@@ -1,4 +1,3 @@
-/// <reference types="react" />
 interface Wave {
     x: number;
     y: number;

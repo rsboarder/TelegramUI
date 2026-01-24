@@ -1,4 +1,3 @@
-/// <reference types="react" />
 import { TypographyProps } from '../Typography';
 type SubheadlineLevel = '1' | '2';
 export interface SubheadlineProps extends TypographyProps {

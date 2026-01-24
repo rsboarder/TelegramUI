@@ -1,6 +1,5 @@
-/// <reference types="react" />
-import { ImageProps } from '../../../../../components/Blocks/Image/Image';
-import { TypographyProps } from '../../../../../components/Typography/Typography';
+import { ImageProps } from 'components/Blocks/Image/Image';
+import { TypographyProps } from 'components/Typography/Typography';
 export interface AvatarAcronymProps extends TypographyProps {
     size: ImageProps['size'];
 }

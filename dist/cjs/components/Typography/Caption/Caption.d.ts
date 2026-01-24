@@ -1,4 +1,3 @@
-/// <reference types="react" />
 import { TypographyProps } from '../Typography';
 type CaptionLevel = '1' | '2';
 export interface CaptionProps extends Omit<TypographyProps, 'plain'> {

@@ -1,6 +1,6 @@
 import { InputHTMLAttributes, RefObject } from "react";
-import { ChipProps } from "../../../../../../components/Form/Chip/Chip";
-import { MultiselectOption } from "../../../../../../components/Form/Multiselect/types";
+import { ChipProps } from "components/Form/Chip/Chip";
+import { MultiselectOption } from "components/Form/Multiselect/types";
 export interface MultiselectBaseProps extends InputHTMLAttributes<HTMLInputElement> {
     /** Custom function to render Chip component. */
     renderChip?: (props: ChipProps) => JSX.Element;
@@ -12,6 +12,8 @@ export interface MultiselectBaseProps extends InputHTMLAttributes<HTMLInputEleme
     onAddChipOption: (optionText: string) => void;
     /** Callback function to remove a selected chip. */
     onRemoveChipOption: (option: MultiselectOption) => void;
+    /** When false, disables keyboard input while keeping dropdown interaction. Default: true */
+    searchable?: boolean;
 }
 /**
  * Renders the base layout of the multiselect including the chips (selected options) and the input field.

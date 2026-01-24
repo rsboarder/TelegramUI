@@ -1,4 +1,3 @@
-/// <reference types="react" />
 import { TypographyProps } from '../Typography';
 export type TextProps = Omit<TypographyProps, 'plain'>;
 /**
