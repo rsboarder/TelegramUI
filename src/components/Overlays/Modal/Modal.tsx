@@ -13,6 +13,7 @@ import styles from "./Modal.module.css";
 
 import { classNames } from "helpers/classNames";
 import { useAppRootContext } from "hooks/useAppRootContext";
+import { AppRootContext } from "components/Service/AppRoot/AppRootContext";
 
 import { Drawer } from "vaul";
 
@@ -91,15 +92,15 @@ export const Modal = forwardRef<HTMLDivElement, ModalProps>(
     },
     ref
   ) => {
-    const container = useAppRootContext();
-    const [portal, setPortal] = useState(container.portalContainer?.current);
+    const appRootContextValue = useAppRootContext();
+    const [portal, setPortal] = useState(appRootContextValue.portalContainer?.current);
 
     // This is internal optimization for AppRoot
     // React sets ref to normal value only after the first render
     // If we will have this logic inside the AppRoot component, then all tree will be re-rendered
     useEffect(() => {
-      setPortal(container.portalContainer?.current);
-    }, [container.portalContainer]);
+      setPortal(appRootContextValue.portalContainer?.current);
+    }, [appRootContextValue.portalContainer]);
 
     const Component = nested ? Drawer.NestedRoot : Drawer.Root;
     return (
@@ -119,32 +120,34 @@ export const Modal = forwardRef<HTMLDivElement, ModalProps>(
       >
         {trigger && <Drawer.Trigger asChild>{trigger}</Drawer.Trigger>}
         <Drawer.Portal container={portal}>
-          {overlayComponent}
-          <Drawer.Content
-            ref={ref}
-            className={classNames(styles.wrapper, className)}
-            {...restProps}
-            aria-describedby="modal-content"
-          >
-            <VisuallyHidden>
-              <Drawer.Title />
-            </VisuallyHidden>
-            {handleOnly && (
-              <Drawer.Handle
-                style={{
-                  background: "transparent",
-                  width: "100%",
-                  height: 28,
-                  margin: 0,
-                  marginBottom: -28,
-                  zIndex: 10,
-                  position: "relative",
-                }}
-              />
-            )}
-            {header}
-            <div className={styles.body}>{children}</div>
-          </Drawer.Content>
+          <AppRootContext.Provider value={appRootContextValue}>
+            {overlayComponent}
+            <Drawer.Content
+              ref={ref}
+              className={classNames(styles.wrapper, className)}
+              {...restProps}
+              aria-describedby="modal-content"
+            >
+              <VisuallyHidden>
+                <Drawer.Title />
+              </VisuallyHidden>
+              {handleOnly && (
+                <Drawer.Handle
+                  style={{
+                    background: "transparent",
+                    width: "100%",
+                    height: 28,
+                    margin: 0,
+                    marginBottom: -28,
+                    zIndex: 10,
+                    position: "relative",
+                  }}
+                />
+              )}
+              {header}
+              <div className={styles.body}>{children}</div>
+            </Drawer.Content>
+          </AppRootContext.Provider>
         </Drawer.Portal>
       </Component>
     );
