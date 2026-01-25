@@ -1,5 +1,7 @@
 .wrapper {
-  overflow-y: scroll;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
   border-radius: 12px;
   background: var(--tgui--bg_color);
 

@@ -1,5 +1,5 @@
 import { InputHTMLAttributes } from "react";
-import { FormPublicProps } from "components/Form/FormInput/FormInput";
+import { FormPublicProps } from "../../../../components/Form/FormInput/FormInput";
 import { MultiselectBaseProps } from "./components/MultiselectBase/MultiselectBase";
 import { MultiselectDropdownProps } from "./components/MultiselectDropdown/MultiselectDropdown";
 import { UseMultiselectProps } from "./hooks/useMultiselect";

@@ -1,4 +1,4 @@
-export declare const getCircleAttributes: (size: "small" | "medium" | "large") => {
+export declare const getCircleAttributes: (size: 'small' | 'medium' | 'large') => {
     size: number;
     strokeWidth: number;
     radius: number;

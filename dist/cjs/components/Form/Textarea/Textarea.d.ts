@@ -1,5 +1,5 @@
 import { TextareaHTMLAttributes } from 'react';
-import { FormPublicProps } from 'components/Form/FormInput/FormInput';
+import { FormPublicProps } from '../../../../components/Form/FormInput/FormInput';
 export interface TextareaProps extends Omit<FormPublicProps, 'after' | 'before'>, TextareaHTMLAttributes<HTMLTextAreaElement> {
 }
 /**
