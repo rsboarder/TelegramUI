@@ -1,1 +1,1 @@
-{"version":3,"file":"useAppRootContext.d.ts","sourceRoot":"","sources":["../../../src/hooks/useAppRootContext.ts"],"names":[],"mappings":"AAMA,eAAO,MAAM,iBAAiB,mFAQ7B,CAAC"}
+{"version":3,"file":"useAppRootContext.d.ts","sourceRoot":"","sources":["../../../src/hooks/useAppRootContext.ts"],"names":[],"mappings":"AAIA,OAAO,EAAkB,uBAAuB,EAAE,MAAM,2CAA2C,CAAC;AASpG,eAAO,MAAM,iBAAiB,+BAS7B,CAAC"}
