@@ -1,3 +1,4 @@
+/// <reference types="react" />
 import { Step } from '../../hooks/types';
 export interface SliderStepsProps {
     steps: Step[];

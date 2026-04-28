@@ -1,5 +1,5 @@
 import { ButtonHTMLAttributes } from 'react';
-import { TypographyProps } from 'components/Typography/Typography';
+import { TypographyProps } from '../../../../../../components/Typography/Typography';
 export interface PinInputButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 }
 export declare const ButtonTypography: (props: TypographyProps) => JSX.Element;

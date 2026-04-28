@@ -24,8 +24,18 @@ export declare const useFloatingMiddlewares: ({ placement, arrowRef, withArrow, 
     middlewares: {
         name: string;
         options?: any;
-        fn: (state: import("@floating-ui/react-dom").MiddlewareState) => import("@floating-ui/react-dom").MiddlewareReturn | Promise<import("@floating-ui/react-dom").MiddlewareReturn>;
+        fn: (state: {
+            x: number;
+            y: number;
+            platform: import("@floating-ui/core").Platform;
+            placement: import("@floating-ui/utils").Placement;
+            initialPlacement: import("@floating-ui/utils").Placement;
+            strategy: import("@floating-ui/utils").Strategy;
+            middlewareData: import("@floating-ui/core").MiddlewareData;
+            rects: import("@floating-ui/utils").ElementRects;
+            elements: import("@floating-ui/dom").Elements;
+        }) => import("@floating-ui/core").MiddlewareReturn | Promise<import("@floating-ui/core").MiddlewareReturn>;
     }[];
-    strictPlacement: import("@floating-ui/react-dom").Placement | undefined;
+    strictPlacement: import("@floating-ui/utils").Placement | undefined;
 };
 //# sourceMappingURL=useFloatingMiddlewares.d.ts.map

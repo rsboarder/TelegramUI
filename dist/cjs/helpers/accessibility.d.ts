@@ -15,5 +15,5 @@ export declare const Keys: {
     readonly PAGE_DOWN: "PageDown";
 };
 export type KeysValues = ValuesOfObject<typeof Keys>;
-export declare const getHorizontalSideByKey: (keys: Extract<KeysValues, "ArrowUp" | "ArrowLeft" | "ArrowDown" | "ArrowRight">) => "left" | "right" | undefined;
+export declare const getHorizontalSideByKey: (keys: Extract<KeysValues, 'ArrowUp' | 'ArrowLeft' | 'ArrowDown' | 'ArrowRight'>) => "left" | "right" | undefined;
 //# sourceMappingURL=accessibility.d.ts.map

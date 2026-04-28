@@ -1,4 +1,5 @@
-import { CellProps } from 'components/Blocks/Cell/Cell';
+/// <reference types="react" />
+import { CellProps } from '../../../../../../components/Blocks/Cell/Cell';
 export interface AccordionSummaryProps extends CellProps {
 }
 /**

@@ -1,6 +1,6 @@
 import { MouseEvent, ReactNode, Ref, RefObject } from "react";
-import { CellProps } from "components/Blocks/Cell/Cell";
-import { MultiselectOption } from "components/Form/Multiselect/types";
+import { CellProps } from "../../../../Blocks/Cell/Cell";
+import { MultiselectOption } from "../../types";
 import { UseMultiselectProps } from "../../hooks/useMultiselect";
 export interface MultiselectDropdownProps extends Required<Pick<UseMultiselectProps, "options" | "value">> {
     /** Array of selected options. */

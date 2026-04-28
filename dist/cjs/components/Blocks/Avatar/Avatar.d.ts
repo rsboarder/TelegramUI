@@ -1,4 +1,5 @@
-import { ImageProps } from 'components/Blocks/Image/Image';
+/// <reference types="react" />
+import { ImageProps } from '../../../../components/Blocks/Image/Image';
 export interface AvatarProps extends ImageProps {
     /** One or two letters to be shown as a placeholder. `fallbackIcon` will not be used if `acronym` is provided. */
     acronym?: string;

@@ -1,6 +1,6 @@
 import { ElementType, ReactElement, ReactNode } from 'react';
-import { BadgeProps } from 'components/Blocks/Badge/Badge';
-import { TappableProps } from 'components/Service/Tappable/Tappable';
+import { BadgeProps } from '../../../../components/Blocks/Badge/Badge';
+import { TappableProps } from '../../../../components/Service/Tappable/Tappable';
 export interface CellProps extends Omit<TappableProps, 'Component'> {
     /** Content displayed above the main content as a subheading */
     subhead?: ReactNode;

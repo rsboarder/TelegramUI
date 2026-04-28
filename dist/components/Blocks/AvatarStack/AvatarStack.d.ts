@@ -1,5 +1,5 @@
 import { HTMLAttributes, ReactElement } from 'react';
-import { AvatarProps } from 'components/Blocks/Avatar/Avatar';
+import { AvatarProps } from '../../../components/Blocks/Avatar/Avatar';
 export interface AvatarStackProps extends HTMLAttributes<HTMLDivElement> {
     /** An array of `Avatar` components to be rendered within the stack. */
     children: ReactElement<AvatarProps>[];
