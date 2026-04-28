@@ -42,6 +42,11 @@ import { renderChipDefault } from "./constants";
         if (event.defaultPrevented || !inputEl || !isHTMLElement(targetEl)) {
             return;
         }
+        if (!searchable && targetEl === event.currentTarget && (event.key === Keys.ENTER || event.key === " " || event.key === "Spacebar")) {
+            event.preventDefault();
+            event.currentTarget.click();
+            return;
+        }
         const lastOptionIndex = valueLength - 1;
         const nextInputValue = inputEl.value;
         const isInputEl = targetEl === inputEl;
@@ -126,6 +131,7 @@ import { renderChipDefault } from "./constants";
         "aria-orientation": "horizontal",
         "aria-disabled": disabled,
         "aria-readonly": isReadOnly,
+        tabIndex: !searchable && !isDisabled ? 0 : undefined,
         onKeyDown: isDisabled ? undefined : handleKeyDown,
         children: [
             chipsValue.map((option, index)=>/*#__PURE__*/ _jsx(Fragment, {
@@ -154,7 +160,7 @@ import { renderChipDefault } from "./constants";
                         "aria-posinset": index + 1,
                         "aria-setsize": valueLength
                     })
-                }, `${typeof option.value}-${option.label}`)),
+                }, option.value)),
             /*#__PURE__*/ _jsx(Subheadline, _object_spread_props(_object_spread({
                 ref: inputRef,
                 "aria-autocomplete": "list",

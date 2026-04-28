@@ -50,6 +50,11 @@ const MultiselectBase = /*#__PURE__*/ (0, _react.forwardRef)((_param, ref)=>{
         if (event.defaultPrevented || !inputEl || !(0, _dom1.isHTMLElement)(targetEl)) {
             return;
         }
+        if (!searchable && targetEl === event.currentTarget && (event.key === _accessibility.Keys.ENTER || event.key === " " || event.key === "Spacebar")) {
+            event.preventDefault();
+            event.currentTarget.click();
+            return;
+        }
         const lastOptionIndex = valueLength - 1;
         const nextInputValue = inputEl.value;
         const isInputEl = targetEl === inputEl;
@@ -134,6 +139,7 @@ const MultiselectBase = /*#__PURE__*/ (0, _react.forwardRef)((_param, ref)=>{
         "aria-orientation": "horizontal",
         "aria-disabled": disabled,
         "aria-readonly": isReadOnly,
+        tabIndex: !searchable && !isDisabled ? 0 : undefined,
         onKeyDown: isDisabled ? undefined : handleKeyDown,
         children: [
             chipsValue.map((option, index)=>/*#__PURE__*/ (0, _jsxruntime.jsx)(_react.Fragment, {
@@ -162,7 +168,7 @@ const MultiselectBase = /*#__PURE__*/ (0, _react.forwardRef)((_param, ref)=>{
                         "aria-posinset": index + 1,
                         "aria-setsize": valueLength
                     })
-                }, `${typeof option.value}-${option.label}`)),
+                }, option.value)),
             /*#__PURE__*/ (0, _jsxruntime.jsx)(_Subheadline.Subheadline, _object_spread_props._(_object_spread._({
                 ref: inputRef,
                 "aria-autocomplete": "list",

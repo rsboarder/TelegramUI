@@ -1,5 +1,4 @@
-/// <reference types="react" />
-import { SpinnerProps } from '../../../../../../components/Feedback/Spinner/Spinner';
+import { SpinnerProps } from 'components/Feedback/Spinner/Spinner';
 interface IOSSpinnerProps {
     size: SpinnerProps['size'];
 }

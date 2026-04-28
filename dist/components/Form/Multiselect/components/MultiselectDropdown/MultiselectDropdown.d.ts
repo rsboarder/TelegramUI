@@ -1,6 +1,6 @@
-import { ForwardRefExoticComponent, MouseEvent, RefAttributes, RefObject } from "react";
-import { CellProps } from "../../../../../components/Blocks/Cell/Cell";
-import { MultiselectOption } from "../../../../../components/Form/Multiselect/types";
+import { MouseEvent, ReactNode, Ref, RefObject } from "react";
+import { CellProps } from "components/Blocks/Cell/Cell";
+import { MultiselectOption } from "components/Form/Multiselect/types";
 import { UseMultiselectProps } from "../../hooks/useMultiselect";
 export interface MultiselectDropdownProps extends Required<Pick<UseMultiselectProps, "options" | "value">> {
     /** Array of selected options. */
@@ -28,15 +28,22 @@ export interface MultiselectDropdownProps extends Required<Pick<UseMultiselectPr
     /** Function to clear the input value. */
     clearInput: () => void;
     /** Custom render function for each option. Defaults to a basic implementation. */
-    renderOption?: ForwardRefExoticComponent<CellProps & RefAttributes<unknown>>;
+    renderOption?: (props: CellProps & {
+        option: MultiselectOption;
+        ref?: Ref<unknown>;
+        "data-value"?: MultiselectOption["value"];
+        "data-testid"?: string;
+    }) => ReactNode;
     /** Whether to close the dropdown after selecting an option. */
     closeDropdownAfterSelect?: boolean;
     /** Optional custom container to render the dropdown into, overrides the default from context */
     portalContainer?: HTMLElement | null;
+    /** Optional function returning a `data-testid` value for each rendered option. */
+    optionTestId?: (option: MultiselectOption) => string;
 }
 /**
  * Renders the dropdown menu for the multiselect input, including all options and managing interactions such as selection, focus, and mouse events.
  * Utilizes the `Popper` component for positioning relative to the input field.
  */
-export declare const MultiselectDropdown: ForwardRefExoticComponent<MultiselectDropdownProps & RefAttributes<HTMLDivElement>>;
+export declare const MultiselectDropdown: import("react").ForwardRefExoticComponent<MultiselectDropdownProps & import("react").RefAttributes<HTMLDivElement>>;
 //# sourceMappingURL=MultiselectDropdown.d.ts.map

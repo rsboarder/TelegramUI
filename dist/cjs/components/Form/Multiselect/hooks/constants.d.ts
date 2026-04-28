@@ -1,4 +1,4 @@
-import { MultiselectOption } from '../../../../../components/Form/Multiselect/types';
+import { MultiselectOption } from 'components/Form/Multiselect/types';
 export type FocusActionType = 'next' | 'prev';
 export declare const DEFAULT_SELECTED_BEHAVIOR = "highlight";
 export declare const DEFAULT_EMPTY_TEXT = "Nothing found";

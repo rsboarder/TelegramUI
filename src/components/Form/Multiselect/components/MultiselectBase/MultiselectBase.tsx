@@ -82,6 +82,18 @@ export const MultiselectBase = forwardRef<HTMLDivElement, MultiselectBaseProps>(
         return;
       }
 
+      // When not searchable, treat Enter/Space on the chip row itself as "open".
+      // We dispatch a click which bubbles to the FormInput onClick handler that owns open/close.
+      if (
+        !searchable &&
+        targetEl === event.currentTarget &&
+        (event.key === Keys.ENTER || event.key === " " || event.key === "Spacebar")
+      ) {
+        event.preventDefault();
+        event.currentTarget.click();
+        return;
+      }
+
       const lastOptionIndex = valueLength - 1;
 
       const nextInputValue = inputEl.value;
@@ -204,10 +216,11 @@ export const MultiselectBase = forwardRef<HTMLDivElement, MultiselectBaseProps>(
         aria-orientation="horizontal"
         aria-disabled={disabled}
         aria-readonly={isReadOnly}
+        tabIndex={!searchable && !isDisabled ? 0 : undefined}
         onKeyDown={isDisabled ? undefined : handleKeyDown}
       >
         {chipsValue.map((option, index) => (
-          <Fragment key={`${typeof option.value}-${option.label}`}>
+          <Fragment key={option.value}>
             {renderChip({
               children: option.label,
               className: styles.chip,

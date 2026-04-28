@@ -1,5 +1,5 @@
 import { ChangeEvent } from 'react';
-import { MultiselectOption } from '../components/Form/Multiselect/types';
+import { MultiselectOption } from 'components/Form/Multiselect/types';
 import { FilterFn } from './helpers/filter';
 import { type UseMultiselectInputProps } from './useMultiselectInput';
 export interface UseMultiselectProps extends UseMultiselectInputProps {

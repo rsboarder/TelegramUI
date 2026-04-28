@@ -7,7 +7,7 @@ import { renderOptionDefault } from "./constants";
 /**
  * Renders the dropdown menu for the multiselect input, including all options and managing interactions such as selection, focus, and mouse events.
  * Utilizes the `Popper` component for positioning relative to the input field.
- */ export const MultiselectDropdown = /*#__PURE__*/ forwardRef(({ dropdownAriaId, options, onMouseLeave, targetRef, addOptionFromInput, setFocusedOptionIndex, renderOption = renderOptionDefault, focusedOption, value, setOptionNode, setOpened, closeDropdownAfterSelect, addOption, focusedOptionIndex, clearInput, portalContainer }, ref)=>{
+ */ export const MultiselectDropdown = /*#__PURE__*/ forwardRef(({ dropdownAriaId, options, onMouseLeave, targetRef, addOptionFromInput, setFocusedOptionIndex, renderOption = renderOptionDefault, focusedOption, value, setOptionNode, setOpened, closeDropdownAfterSelect, addOption, focusedOptionIndex, clearInput, portalContainer, optionTestId }, ref)=>{
     return /*#__PURE__*/ _jsx(Popper, {
         id: dropdownAriaId,
         ref: ref,
@@ -52,9 +52,12 @@ import { renderOptionDefault } from "./constants";
                         addOption(option);
                         clearInput();
                     },
-                    onMouseEnter: ()=>setFocusedOptionIndex(index)
+                    onMouseEnter: ()=>setFocusedOptionIndex(index),
+                    option: option,
+                    "data-value": option.value,
+                    "data-testid": optionTestId ? optionTestId(option) : undefined
                 })
-            }, `${typeof option.value}-${option.label}`);
+            }, option.value);
         })
     });
 });

@@ -1,5 +1,5 @@
 import { ChangeEvent, HTMLAttributes, ReactNode } from 'react';
-import { type TouchEvent } from '../../../components/Service/Touch/Touch';
+import { type TouchEvent } from 'components/Service/Touch/Touch';
 export interface SliderBaseProps extends Omit<HTMLAttributes<HTMLDivElement>, 'value' | 'defaultValue' | 'onChange'> {
     /** Minimum allowed value. Defaults to 0. */
     min?: number;

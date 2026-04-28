@@ -1,4 +1,3 @@
-/// <reference types="react" />
 import { TypographyProps } from '../Typography';
 type TitleLevel = '1' | '2' | '3';
 export interface TitleProps extends TypographyProps {

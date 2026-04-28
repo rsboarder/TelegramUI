@@ -1,9 +1,9 @@
 import {
   forwardRef,
-  ForwardRefExoticComponent,
   Fragment,
   MouseEvent,
-  RefAttributes,
+  ReactNode,
+  Ref,
   RefObject,
 } from "react";
 import styles from "./MultiselectDropdown.module.css";
@@ -45,11 +45,20 @@ export interface MultiselectDropdownProps
   /** Function to clear the input value. */
   clearInput: () => void;
   /** Custom render function for each option. Defaults to a basic implementation. */
-  renderOption?: ForwardRefExoticComponent<CellProps & RefAttributes<unknown>>;
+  renderOption?: (
+    props: CellProps & {
+      option: MultiselectOption;
+      ref?: Ref<unknown>;
+      "data-value"?: MultiselectOption["value"];
+      "data-testid"?: string;
+    }
+  ) => ReactNode;
   /** Whether to close the dropdown after selecting an option. */
   closeDropdownAfterSelect?: boolean;
   /** Optional custom container to render the dropdown into, overrides the default from context */
   portalContainer?: HTMLElement | null;
+  /** Optional function returning a `data-testid` value for each rendered option. */
+  optionTestId?: (option: MultiselectOption) => string;
 }
 
 /**
@@ -78,6 +87,7 @@ export const MultiselectDropdown = forwardRef<
       focusedOptionIndex,
       clearInput,
       portalContainer,
+      optionTestId,
     },
     ref
   ) => {
@@ -119,7 +129,7 @@ export const MultiselectDropdown = forwardRef<
           }
 
           return (
-            <Fragment key={`${typeof option.value}-${option.label}`}>
+            <Fragment key={option.value}>
               {renderOption({
                 className: styles.option,
                 hovered: focusedOption
@@ -141,6 +151,9 @@ export const MultiselectDropdown = forwardRef<
                   clearInput();
                 },
                 onMouseEnter: () => setFocusedOptionIndex(index),
+                option,
+                "data-value": option.value,
+                "data-testid": optionTestId?.(option),
               })}
             </Fragment>
           );

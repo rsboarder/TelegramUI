@@ -1,5 +1,5 @@
 import { ElementType, ReactNode } from 'react';
-import { TappableProps } from '../../../../../components/Service/Tappable/Tappable';
+import { TappableProps } from 'components/Service/Tappable/Tappable';
 export interface ButtonCellProps extends Omit<TappableProps, 'Component'> {
     /** Determines the button cell's visual theme, influencing color and style. */
     mode?: 'default' | 'destructive';

@@ -24,7 +24,8 @@ import { useMultiselect } from "./hooks/useMultiselect";
     options: optionsProp, closeDropdownAfterSelect = false, selectedBehavior, emptyText, creatable = false, filterFn, // MultiselectInputProps
     value: valueProp = [], defaultValue, inputValue: inputValueProp, renderChip, renderOption, onInputChange: onInputChangeProp, onChange, onFocus, onBlur, onKeyDown, // Portal container
     portalContainer, // Searchable prop
-    searchable } = _param, restProps = _object_without_properties(_param, [
+    searchable, // Testability
+    optionTestId } = _param, restProps = _object_without_properties(_param, [
         "header",
         "before",
         "status",
@@ -48,7 +49,8 @@ import { useMultiselect } from "./hooks/useMultiselect";
         "onBlur",
         "onKeyDown",
         "portalContainer",
-        "searchable"
+        "searchable",
+        "optionTestId"
     ]);
     const { // Option props
     value, addOptionFromInput, addOption, removeOption, // Input props
@@ -363,7 +365,8 @@ import { useMultiselect } from "./hooks/useMultiselect";
                 addOption: addOption,
                 clearInput: clearInput,
                 focusedOptionIndex: focusedOptionIndex,
-                portalContainer: portalContainer
+                portalContainer: portalContainer,
+                optionTestId: optionTestId
             })
         ]
     });

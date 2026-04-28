@@ -14,7 +14,7 @@ const _Cell = require("../../../../Blocks/Cell/Cell");
 const _Popper = require("../../../../Overlays/Popper/Popper");
 const _constants = require("../../hooks/constants");
 const _constants1 = require("./constants");
-const MultiselectDropdown = /*#__PURE__*/ (0, _react.forwardRef)(({ dropdownAriaId, options, onMouseLeave, targetRef, addOptionFromInput, setFocusedOptionIndex, renderOption = _constants1.renderOptionDefault, focusedOption, value, setOptionNode, setOpened, closeDropdownAfterSelect, addOption, focusedOptionIndex, clearInput, portalContainer }, ref)=>{
+const MultiselectDropdown = /*#__PURE__*/ (0, _react.forwardRef)(({ dropdownAriaId, options, onMouseLeave, targetRef, addOptionFromInput, setFocusedOptionIndex, renderOption = _constants1.renderOptionDefault, focusedOption, value, setOptionNode, setOpened, closeDropdownAfterSelect, addOption, focusedOptionIndex, clearInput, portalContainer, optionTestId }, ref)=>{
     return /*#__PURE__*/ (0, _jsxruntime.jsx)(_Popper.Popper, {
         id: dropdownAriaId,
         ref: ref,
@@ -59,9 +59,12 @@ const MultiselectDropdown = /*#__PURE__*/ (0, _react.forwardRef)(({ dropdownAria
                         addOption(option);
                         clearInput();
                     },
-                    onMouseEnter: ()=>setFocusedOptionIndex(index)
+                    onMouseEnter: ()=>setFocusedOptionIndex(index),
+                    option: option,
+                    "data-value": option.value,
+                    "data-testid": optionTestId ? optionTestId(option) : undefined
                 })
-            }, `${typeof option.value}-${option.label}`);
+            }, option.value);
         })
     });
 });

@@ -1,3 +1,2 @@
-import { AppRootContextInterface } from '../../components/Service/AppRoot/AppRootContext';
-export declare const useAppRootContext: () => AppRootContextInterface;
+export declare const useAppRootContext: () => import("components/Service/AppRoot/AppRootContext").AppRootContextInterface;
 //# sourceMappingURL=useAppRootContext.d.ts.map

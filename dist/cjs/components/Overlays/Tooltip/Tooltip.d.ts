@@ -1,5 +1,4 @@
-/// <reference types="react" />
-import { PopperProps } from '../../../../components/Overlays/Popper/Popper';
+import { PopperProps } from 'components/Overlays/Popper/Popper';
 export interface TooltipProps extends PopperProps {
     /** Defines the theme of the tooltip, affecting its background and text color. */
     mode?: 'light' | 'dark';

@@ -6,7 +6,6 @@ import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
 import { forwardRef, useEffect, useState } from "react";
 import { classNames } from "../../../helpers/classNames";
 import { useAppRootContext } from "../../../hooks/useAppRootContext";
-import { AppRootContext } from "../../Service/AppRoot/AppRootContext";
 import { Drawer } from "vaul";
 import { VisuallyHidden } from "../../Service/VisuallyHidden/VisuallyHidden";
 import { ModalClose } from "./components/ModalClose/ModalClose";
@@ -35,17 +34,17 @@ import { ModalOverlay } from "./components/ModalOverlay/ModalOverlay";
         "dismissible",
         "handleOnly"
     ]);
-    var _appRootContextValue_portalContainer;
-    const appRootContextValue = useAppRootContext();
-    const [portal, setPortal] = useState((_appRootContextValue_portalContainer = appRootContextValue.portalContainer) === null || _appRootContextValue_portalContainer === void 0 ? void 0 : _appRootContextValue_portalContainer.current);
+    var _container_portalContainer;
+    const container = useAppRootContext();
+    const [portal, setPortal] = useState((_container_portalContainer = container.portalContainer) === null || _container_portalContainer === void 0 ? void 0 : _container_portalContainer.current);
     // This is internal optimization for AppRoot
     // React sets ref to normal value only after the first render
     // If we will have this logic inside the AppRoot component, then all tree will be re-rendered
     useEffect(()=>{
-        var _appRootContextValue_portalContainer;
-        setPortal((_appRootContextValue_portalContainer = appRootContextValue.portalContainer) === null || _appRootContextValue_portalContainer === void 0 ? void 0 : _appRootContextValue_portalContainer.current);
+        var _container_portalContainer;
+        setPortal((_container_portalContainer = container.portalContainer) === null || _container_portalContainer === void 0 ? void 0 : _container_portalContainer.current);
     }, [
-        appRootContextValue.portalContainer
+        container.portalContainer
     ]);
     const Component = nested ? Drawer.NestedRoot : Drawer.Root;
     return /*#__PURE__*/ _jsxs(Component, {
@@ -66,41 +65,38 @@ import { ModalOverlay } from "./components/ModalOverlay/ModalOverlay";
                 asChild: true,
                 children: trigger
             }),
-            /*#__PURE__*/ _jsx(Drawer.Portal, {
+            /*#__PURE__*/ _jsxs(Drawer.Portal, {
                 container: portal,
-                children: /*#__PURE__*/ _jsxs(AppRootContext.Provider, {
-                    value: appRootContextValue,
-                    children: [
-                        overlayComponent,
-                        /*#__PURE__*/ _jsxs(Drawer.Content, _object_spread_props(_object_spread({
-                            ref: ref,
-                            className: classNames("tgui-cc76354712c6e8d9", className)
-                        }, restProps), {
-                            "aria-describedby": "modal-content",
-                            children: [
-                                /*#__PURE__*/ _jsx(VisuallyHidden, {
-                                    children: /*#__PURE__*/ _jsx(Drawer.Title, {})
-                                }),
-                                handleOnly && /*#__PURE__*/ _jsx(Drawer.Handle, {
-                                    style: {
-                                        background: "transparent",
-                                        width: "100%",
-                                        height: 28,
-                                        margin: 0,
-                                        marginBottom: -28,
-                                        zIndex: 10,
-                                        position: "relative"
-                                    }
-                                }),
-                                header,
-                                /*#__PURE__*/ _jsx("div", {
-                                    className: "tgui-5dc6ad1ca3ac3ed4",
-                                    children: children
-                                })
-                            ]
-                        }))
-                    ]
-                })
+                children: [
+                    overlayComponent,
+                    /*#__PURE__*/ _jsxs(Drawer.Content, _object_spread_props(_object_spread({
+                        ref: ref,
+                        className: classNames("tgui-cc76354712c6e8d9", className)
+                    }, restProps), {
+                        "aria-describedby": "modal-content",
+                        children: [
+                            /*#__PURE__*/ _jsx(VisuallyHidden, {
+                                children: /*#__PURE__*/ _jsx(Drawer.Title, {})
+                            }),
+                            handleOnly && /*#__PURE__*/ _jsx(Drawer.Handle, {
+                                style: {
+                                    background: "transparent",
+                                    width: "100%",
+                                    height: 28,
+                                    margin: 0,
+                                    marginBottom: -28,
+                                    zIndex: 10,
+                                    position: "relative"
+                                }
+                            }),
+                            header,
+                            /*#__PURE__*/ _jsx("div", {
+                                className: "tgui-5dc6ad1ca3ac3ed4",
+                                children: children
+                            })
+                        ]
+                    }))
+                ]
             })
         ]
     });

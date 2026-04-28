@@ -1,6 +1,6 @@
 import { InputHTMLAttributes, RefObject } from "react";
-import { ChipProps } from "../../components/Form/Chip/Chip";
-import { MultiselectOption } from "../../components/Form/Multiselect/types";
+import { ChipProps } from "components/Form/Chip/Chip";
+import { MultiselectOption } from "components/Form/Multiselect/types";
 export interface MultiselectBaseProps extends InputHTMLAttributes<HTMLInputElement> {
     /** Custom function to render Chip component. */
     renderChip?: (props: ChipProps) => JSX.Element;

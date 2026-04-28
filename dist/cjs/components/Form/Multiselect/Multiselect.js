@@ -30,8 +30,7 @@ const Multiselect = /*#__PURE__*/ (0, _react.forwardRef)((_param, ref)=>{
     header, before, status, className, children, disabled, // CustomSelectDropdownProps
     options: optionsProp, closeDropdownAfterSelect = false, selectedBehavior, emptyText, creatable = false, filterFn, // MultiselectInputProps
     value: valueProp = [], defaultValue, inputValue: inputValueProp, renderChip, renderOption, onInputChange: onInputChangeProp, onChange, onFocus, onBlur, onKeyDown, // Portal container
-    portalContainer, // Searchable prop
-    searchable } = _param, restProps = _object_without_properties._(_param, [
+    portalContainer, searchable, optionTestId } = _param, restProps = _object_without_properties._(_param, [
         "header",
         "before",
         "status",
@@ -55,7 +54,8 @@ const Multiselect = /*#__PURE__*/ (0, _react.forwardRef)((_param, ref)=>{
         "onBlur",
         "onKeyDown",
         "portalContainer",
-        "searchable"
+        "searchable",
+        "optionTestId"
     ]);
     const { // Option props
     value, addOptionFromInput, addOption, removeOption, // Input props
@@ -370,7 +370,8 @@ const Multiselect = /*#__PURE__*/ (0, _react.forwardRef)((_param, ref)=>{
                 addOption: addOption,
                 clearInput: clearInput,
                 focusedOptionIndex: focusedOptionIndex,
-                portalContainer: portalContainer
+                portalContainer: portalContainer,
+                optionTestId: optionTestId
             })
         ]
     });

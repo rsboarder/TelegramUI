@@ -1,5 +1,5 @@
 import { ReactNode, SelectHTMLAttributes } from 'react';
-import { FormPublicProps } from '../../../components/Form/FormInput/FormInput';
+import { FormPublicProps } from 'components/Form/FormInput/FormInput';
 export interface SelectProps extends Omit<FormPublicProps, 'after'>, SelectHTMLAttributes<HTMLSelectElement> {
     /** Children elements, typically `option` elements to be rendered within the select. */
     children: ReactNode;

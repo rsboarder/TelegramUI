@@ -49,7 +49,7 @@ export interface MultiselectProps
       "value" | "defaultValue" | "onChange"
     >,
     Omit<FormPublicProps, "after">,
-    Pick<MultiselectDropdownProps, "closeDropdownAfterSelect" | "renderOption">,
+    Pick<MultiselectDropdownProps, "closeDropdownAfterSelect" | "renderOption" | "optionTestId">,
     Pick<
       UseMultiselectProps,
       | "value"
@@ -116,6 +116,9 @@ export const Multiselect = forwardRef<HTMLDivElement, MultiselectProps>(
 
       // Searchable prop
       searchable,
+
+      // Testability
+      optionTestId,
 
       ...restProps
     },
@@ -516,6 +519,7 @@ export const Multiselect = forwardRef<HTMLDivElement, MultiselectProps>(
             clearInput={clearInput}
             focusedOptionIndex={focusedOptionIndex}
             portalContainer={portalContainer}
+            optionTestId={optionTestId}
           />
         )}
       </FormInput>

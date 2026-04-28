@@ -5,6 +5,7 @@ import { hideControls, setControlsTypes } from 'storybook/controls';
 
 import { Section } from 'components';
 import { List } from 'components/Blocks/List/List';
+import { Chip } from 'components/Form/Chip/Chip';
 import { MultiselectOption } from 'components/Form/Multiselect/types';
 import { Multiselect, MultiselectProps } from './Multiselect';
 
@@ -74,5 +75,33 @@ export const CreateOptionInInput: StoryObj<MultiselectProps> = {
     creatable: 'Create new platform',
   },
   render: (props) => <StoryBookComponent sectionHeader="Type something inside and press enter or option in list" {...props} />,
+  decorators: [decorator],
+};
+
+export const WithCustomChip: StoryObj<MultiselectProps> = {
+  args: {
+    renderChip: (chipProps) => (
+      <Chip {...chipProps} mode="elevated">
+        ⭐ {chipProps.children}
+      </Chip>
+    ),
+  },
+  render: (props) => <StoryBookComponent sectionHeader="Custom chip rendering via renderChip" {...props} />,
+  decorators: [decorator],
+};
+
+export const WithOptionTestId: StoryObj<MultiselectProps> = {
+  args: {
+    optionTestId: (option) => `platform-option-${option.value}`,
+  },
+  render: (props) => <StoryBookComponent sectionHeader="data-testid emitted per option (inspect DOM)" {...props} />,
+  decorators: [decorator],
+};
+
+export const NotSearchable: StoryObj<MultiselectProps> = {
+  args: {
+    searchable: false,
+  },
+  render: (props) => <StoryBookComponent sectionHeader="searchable=false: click or focus + Enter/Space to open" {...props} />,
   decorators: [decorator],
 };

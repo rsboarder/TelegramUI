@@ -16,7 +16,6 @@ const _jsxruntime = require("react/jsx-runtime");
 const _react = require("react");
 const _classNames = require("../../../helpers/classNames");
 const _useAppRootContext = require("../../../hooks/useAppRootContext");
-const _AppRootContext = require("../../Service/AppRoot/AppRootContext");
 const _vaul = require("vaul");
 const _VisuallyHidden = require("../../Service/VisuallyHidden/VisuallyHidden");
 const _ModalClose = require("./components/ModalClose/ModalClose");
@@ -41,17 +40,17 @@ const Modal = /*#__PURE__*/ (0, _react.forwardRef)((_param, ref)=>{
         "dismissible",
         "handleOnly"
     ]);
-    var _appRootContextValue_portalContainer;
-    const appRootContextValue = (0, _useAppRootContext.useAppRootContext)();
-    const [portal, setPortal] = (0, _react.useState)((_appRootContextValue_portalContainer = appRootContextValue.portalContainer) === null || _appRootContextValue_portalContainer === void 0 ? void 0 : _appRootContextValue_portalContainer.current);
+    var _container_portalContainer;
+    const container = (0, _useAppRootContext.useAppRootContext)();
+    const [portal, setPortal] = (0, _react.useState)((_container_portalContainer = container.portalContainer) === null || _container_portalContainer === void 0 ? void 0 : _container_portalContainer.current);
     // This is internal optimization for AppRoot
     // React sets ref to normal value only after the first render
     // If we will have this logic inside the AppRoot component, then all tree will be re-rendered
     (0, _react.useEffect)(()=>{
-        var _appRootContextValue_portalContainer;
-        setPortal((_appRootContextValue_portalContainer = appRootContextValue.portalContainer) === null || _appRootContextValue_portalContainer === void 0 ? void 0 : _appRootContextValue_portalContainer.current);
+        var _container_portalContainer;
+        setPortal((_container_portalContainer = container.portalContainer) === null || _container_portalContainer === void 0 ? void 0 : _container_portalContainer.current);
     }, [
-        appRootContextValue.portalContainer
+        container.portalContainer
     ]);
     const Component = nested ? _vaul.Drawer.NestedRoot : _vaul.Drawer.Root;
     return /*#__PURE__*/ (0, _jsxruntime.jsxs)(Component, {
@@ -72,41 +71,38 @@ const Modal = /*#__PURE__*/ (0, _react.forwardRef)((_param, ref)=>{
                 asChild: true,
                 children: trigger
             }),
-            /*#__PURE__*/ (0, _jsxruntime.jsx)(_vaul.Drawer.Portal, {
+            /*#__PURE__*/ (0, _jsxruntime.jsxs)(_vaul.Drawer.Portal, {
                 container: portal,
-                children: /*#__PURE__*/ (0, _jsxruntime.jsxs)(_AppRootContext.AppRootContext.Provider, {
-                    value: appRootContextValue,
-                    children: [
-                        overlayComponent,
-                        /*#__PURE__*/ (0, _jsxruntime.jsxs)(_vaul.Drawer.Content, _object_spread_props._(_object_spread._({
-                            ref: ref,
-                            className: (0, _classNames.classNames)("tgui-cc76354712c6e8d9", className)
-                        }, restProps), {
-                            "aria-describedby": "modal-content",
-                            children: [
-                                /*#__PURE__*/ (0, _jsxruntime.jsx)(_VisuallyHidden.VisuallyHidden, {
-                                    children: /*#__PURE__*/ (0, _jsxruntime.jsx)(_vaul.Drawer.Title, {})
-                                }),
-                                handleOnly && /*#__PURE__*/ (0, _jsxruntime.jsx)(_vaul.Drawer.Handle, {
-                                    style: {
-                                        background: "transparent",
-                                        width: "100%",
-                                        height: 28,
-                                        margin: 0,
-                                        marginBottom: -28,
-                                        zIndex: 10,
-                                        position: "relative"
-                                    }
-                                }),
-                                header,
-                                /*#__PURE__*/ (0, _jsxruntime.jsx)("div", {
-                                    className: "tgui-5dc6ad1ca3ac3ed4",
-                                    children: children
-                                })
-                            ]
-                        }))
-                    ]
-                })
+                children: [
+                    overlayComponent,
+                    /*#__PURE__*/ (0, _jsxruntime.jsxs)(_vaul.Drawer.Content, _object_spread_props._(_object_spread._({
+                        ref: ref,
+                        className: (0, _classNames.classNames)("tgui-cc76354712c6e8d9", className)
+                    }, restProps), {
+                        "aria-describedby": "modal-content",
+                        children: [
+                            /*#__PURE__*/ (0, _jsxruntime.jsx)(_VisuallyHidden.VisuallyHidden, {
+                                children: /*#__PURE__*/ (0, _jsxruntime.jsx)(_vaul.Drawer.Title, {})
+                            }),
+                            handleOnly && /*#__PURE__*/ (0, _jsxruntime.jsx)(_vaul.Drawer.Handle, {
+                                style: {
+                                    background: "transparent",
+                                    width: "100%",
+                                    height: 28,
+                                    margin: 0,
+                                    marginBottom: -28,
+                                    zIndex: 10,
+                                    position: "relative"
+                                }
+                            }),
+                            header,
+                            /*#__PURE__*/ (0, _jsxruntime.jsx)("div", {
+                                className: "tgui-5dc6ad1ca3ac3ed4",
+                                children: children
+                            })
+                        ]
+                    }))
+                ]
             })
         ]
     });
