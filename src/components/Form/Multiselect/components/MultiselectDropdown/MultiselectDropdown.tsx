@@ -44,14 +44,20 @@ export interface MultiselectDropdownProps
   addOption: (option: MultiselectOption) => void;
   /** Function to clear the input value. */
   clearInput: () => void;
-  /** Custom render function for each option. Defaults to a basic implementation. */
+  /**
+   * Custom render function for each option. Receives the spreadable
+   * Cell props as the first argument and the raw `option` as the
+   * second — passing `option` separately (not in the props bag) is
+   * deliberate: it prevents `option="[object Object]"` from being
+   * spread onto the rendered DOM.
+   */
   renderOption?: (
     props: CellProps & {
-      option: MultiselectOption;
       ref?: Ref<unknown>;
       "data-value"?: MultiselectOption["value"];
       "data-testid"?: string;
-    }
+    },
+    option: MultiselectOption,
   ) => ReactNode;
   /** Whether to close the dropdown after selecting an option. */
   closeDropdownAfterSelect?: boolean;
@@ -130,31 +136,33 @@ export const MultiselectDropdown = forwardRef<
 
           return (
             <Fragment key={option.value}>
-              {renderOption({
-                className: styles.option,
-                hovered: focusedOption
-                  ? option.value === focusedOption.value
-                  : false,
-                children: option.label,
-                selected:
-                  value.findIndex(
-                    (selectedOption) => selectedOption.value === option.value
-                  ) !== -1,
-                ref: (node: HTMLElement) => setOptionNode(index, node),
-                onMouseDown: (event: MouseEvent<HTMLDivElement>) => {
-                  if (event.defaultPrevented) {
-                    return;
-                  }
+              {renderOption(
+                {
+                  className: styles.option,
+                  hovered: focusedOption
+                    ? option.value === focusedOption.value
+                    : false,
+                  children: option.label,
+                  selected:
+                    value.findIndex(
+                      (selectedOption) => selectedOption.value === option.value
+                    ) !== -1,
+                  ref: (node: HTMLElement) => setOptionNode(index, node),
+                  onMouseDown: (event: MouseEvent<HTMLDivElement>) => {
+                    if (event.defaultPrevented) {
+                      return;
+                    }
 
-                  closeDropdownAfterSelect && setOpened(false);
-                  addOption(option);
-                  clearInput();
+                    closeDropdownAfterSelect && setOpened(false);
+                    addOption(option);
+                    clearInput();
+                  },
+                  onMouseEnter: () => setFocusedOptionIndex(index),
+                  "data-value": option.value,
+                  "data-testid": optionTestId?.(option),
                 },
-                onMouseEnter: () => setFocusedOptionIndex(index),
                 option,
-                "data-value": option.value,
-                "data-testid": optionTestId?.(option),
-              })}
+              )}
             </Fragment>
           );
         })}

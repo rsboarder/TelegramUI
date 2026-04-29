@@ -27,13 +27,18 @@ export interface MultiselectDropdownProps extends Required<Pick<UseMultiselectPr
     addOption: (option: MultiselectOption) => void;
     /** Function to clear the input value. */
     clearInput: () => void;
-    /** Custom render function for each option. Defaults to a basic implementation. */
+    /**
+     * Custom render function for each option. Receives the spreadable
+     * Cell props as the first argument and the raw `option` as the
+     * second — passing `option` separately (not in the props bag) is
+     * deliberate: it prevents `option="[object Object]"` from being
+     * spread onto the rendered DOM.
+     */
     renderOption?: (props: CellProps & {
-        option: MultiselectOption;
         ref?: Ref<unknown>;
         "data-value"?: MultiselectOption["value"];
         "data-testid"?: string;
-    }) => ReactNode;
+    }, option: MultiselectOption) => ReactNode;
     /** Whether to close the dropdown after selecting an option. */
     closeDropdownAfterSelect?: boolean;
     /** Optional custom container to render the dropdown into, overrides the default from context */

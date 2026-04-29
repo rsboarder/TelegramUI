@@ -53,10 +53,9 @@ import { renderOptionDefault } from "./constants";
                         clearInput();
                     },
                     onMouseEnter: ()=>setFocusedOptionIndex(index),
-                    option: option,
                     "data-value": option.value,
                     "data-testid": optionTestId ? optionTestId(option) : undefined
-                })
+                }, option)
             }, option.value);
         })
     });

@@ -60,10 +60,9 @@ const MultiselectDropdown = /*#__PURE__*/ (0, _react.forwardRef)(({ dropdownAria
                         clearInput();
                     },
                     onMouseEnter: ()=>setFocusedOptionIndex(index),
-                    option: option,
                     "data-value": option.value,
                     "data-testid": optionTestId ? optionTestId(option) : undefined
-                })
+                }, option)
             }, option.value);
         })
     });

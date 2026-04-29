@@ -1,6 +1,8 @@
-import { CellProps } from 'components/Blocks/Cell/Cell';
-import { MultiselectOption } from 'components/Form/Multiselect/types';
-export declare const renderOptionDefault: ({ option: _option, ...props }: CellProps & {
-    option?: MultiselectOption;
-}) => JSX.Element;
+import { CellProps } from '../../../../Blocks/Cell/Cell';
+import { MultiselectOption } from '../../types';
+/**
+ * Default option renderer. `option` is passed as a SECOND argument
+ * (not in the props bag) so it never leaks onto the rendered DOM.
+ */
+export declare const renderOptionDefault: (props: CellProps, _option: MultiselectOption) => JSX.Element;
 //# sourceMappingURL=constants.d.ts.map
